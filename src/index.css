@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@variant dark (&:where(.dark, .dark *));
+
+body {
+  font-family: var(--font-sans);
+  background-color: #fcfbfc;
+  color: #1f2937;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Unified Light/Dark Mode Global Styles */
+.dark body {
+  background-color: #030712 !important; /* Slate 950 */
+  color: #f3f4f6 !important; /* Gray 100 */
+}
+
+/* Automatic Card conversions in Dark Mode with high specificity */
+.dark .bg-white {
+  background-color: #0f172a !important; /* Slate 900 */
+  color: #e2e8f0 !important;
+}
+
+/* Automatically transition borders */
+.dark .border,
+.dark .border-gray-100, 
+.dark .border-gray-150,
+.dark .border-gray-200, 
+.dark .border-slate-100, 
+.dark .border-slate-200 {
+  border-color: #1e293b !important; /* Slate 800 */
+}
+
+/* High contrast Text adaptation in Dark Mode */
+.dark .text-slate-900, 
+.dark .text-gray-900,
+.dark .text-slate-800,
+.dark .text-gray-800 {
+  color: #f8fafc !important; /* Slate 50 */
+}
+
+.dark .text-slate-700, 
+.dark .text-gray-700,
+.dark .text-slate-600,
+.dark .text-gray-600 {
+  color: #cbd5e1 !important; /* Slate 300 */
+}
+
+.dark .text-slate-500, 
+.dark .text-gray-500 {
+  color: #94a3b8 !important; /* Slate 400 */
+}
+
+/* Slate background adaptations */
+.dark .bg-slate-50, 
+.dark .bg-gray-50,
+.dark .bg-slate-100, 
+.dark .bg-gray-100,
+.dark .bg-indigo-50\/40,
+.dark .bg-emerald-50\/40,
+.dark .bg-amber-50\/45,
+.dark .bg-rose-50\/45 {
+  background-color: #1e293b !important; /* Slate 800 */
+  color: #cbd5e1 !important;
+}
+
+/* Input Fields & Buttons customizations */
+.dark input, 
+.dark select, 
+.dark textarea {
+  background-color: #0b0f19 !important; /* Darker charcoal */
+  color: #f8fafc !important;
+  border-color: #334155 !important; /* Slate 700 */
+}
+
+.dark input::placeholder, 
+.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+.dark .hover\:bg-slate-50:hover, 
+.dark .hover\:bg-gray-50:hover {
+  background-color: #1e293b !important;
+}
+
+/* Specific elements like Career Pathway logs container */
+.dark .bg-slate-50.border.border-gray-150 {
+  background-color: #0b0f19 !important;
+  border-color: #1e293b !important;
+}
+
+/* Print layout optimizations for Orchestrator Report */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+    width: 100% !important;
+  }
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+}
+

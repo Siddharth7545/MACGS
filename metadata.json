@@ -1,0 +1,6 @@
+{
+  "name": "Multi-Agent Career Guidance System",
+  "description": "An intelligent, multi-agent AI career guidance platform offering adaptive assessments, automated skill gap analysis, personalized learning paths, job market analyses, resume optimization, and mock interview preparations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
