@@ -29,6 +29,13 @@ export interface User {
   profileAnalyzed?: boolean;
 }
 
+export interface Question {
+  id: string;
+  category: "aptitude" | "interests" | "personality";
+  text: string;
+  options: { label: string; value: string }[];
+}
+
 export interface Assessment {
   userId: string;
   answers: { [questionId: string]: string };
@@ -39,6 +46,7 @@ export interface Assessment {
   personalityType: string;
   analysisText?: string;
   completedAt?: string;
+  questions?: Question[];
 }
 
 export interface CareerRecommendation {

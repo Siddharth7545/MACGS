@@ -2,7 +2,8 @@ import express from "express";
 import path from "path";
 import dotenv from "dotenv";
 import { GoogleGenAI } from "@google/genai";
-import { fileDb, Assessment, CareerRecommendation, LearningRoadmap, JobMarketInsight, InterviewQuestion } from "./serverDb";
+import { fileDb, Assessment, CareerRecommendation, LearningRoadmap, JobMarketInsight, InterviewQuestion, Question } from "./serverDb";
+import { DEFAULT_QUESTIONS } from "./src/data/defaultQuestions";
 
 // Load environment variables
 dotenv.config();
@@ -238,28 +239,94 @@ app.get("/api/admin/users", (req, res) => {
   res.json(users);
 });
 
+async function generateDynamicQuestions(user: any): Promise<Question[]> {
+  let questions = DEFAULT_QUESTIONS;
+  
+  if (user && user.profile) {
+    const ai = getGeminiClient();
+    if (ai) {
+      try {
+        const randomTopics = ["advanced system design", "performance optimization", "security and privacy", "user experience", "data structures", "cloud architecture", "team collaboration", "ethical software development", "problem solving under pressure", "emerging technologies", "agile methodologies", "machine learning integration", "database scaling"];
+        const topic = randomTopics[Math.floor(Math.random() * randomTopics.length)];
+
+        const prompt = `Act as an assessment generator. The user has the following skills: ${user.profile.skills?.join(", ") || "General Tech"} and interests: ${user.profile.interests?.join(", ") || "Software"}.
+        Generate 4 aptitude questions, 3 interest questions, and 3 personality questions tailored to their skills and interests, but assessing their technical aptitude, Holland code interests, and work personality.
+        CRITICAL: Make the questions focus on this specific theme/context: "${topic}".
+        Ensure the questions are completely novel, unique, and distinctly different from any standard questions. Random entropy: ${Math.random()}.
+        Return ONLY valid JSON in this exact shape:
+        {
+          "questions": [
+            {
+              "id": "apt_1", 
+              "category": "aptitude", 
+              "text": "Question text...",
+              "options": [
+                { "label": "Option 1", "value": "correct" },
+                { "label": "Option 2", "value": "incorrect_1" },
+                { "label": "Option 3", "value": "incorrect_2" },
+                { "label": "Option 4", "value": "incorrect_3" }
+              ]
+            }
+          ]
+        }
+        For 'aptitude' questions, use values "correct", "incorrect_1", "incorrect_2", "incorrect_3".
+        For 'interests' questions, use values "A", "B", "C", "D", "E".
+        For 'personality' questions, use values "A", "B", "C", "D".`;
+
+        const aiRes = await callGeminiWithRetry({
+          model: "gemini-3.1-flash-lite",
+          contents: prompt,
+          config: { 
+            responseMimeType: "application/json",
+            temperature: 0.9
+          },
+        });
+
+        const parsed = robustParseJson(aiRes.text);
+        if (parsed.questions && Array.isArray(parsed.questions) && parsed.questions.length > 0) {
+          questions = parsed.questions;
+        }
+      } catch (err: any) {
+        console.warn("Failed to generate dynamic questions, falling back to defaults", err?.message || err);
+      }
+    }
+  }
+  return questions;
+}
+
 // 4. Adaptive Assessment endpoints (A-002: Assessment Agent)
-app.get("/api/assessment/:userId", (req, res) => {
-  const assessment = fileDb.getAssessment(req.params.userId);
+app.get("/api/assessment/:userId", async (req, res) => {
+  const userId = req.params.userId;
+  const assessment = fileDb.getAssessment(userId);
   if (assessment) {
     return res.json(assessment);
   }
+  
+  const user = fileDb.getUserById(userId);
+  const questions = await generateDynamicQuestions(user);
+
   // Initialize newly
-  const newAssessment = {
-    userId: req.params.userId,
+  const newAssessment: Assessment = {
+    userId: userId,
     answers: {},
     completed: false,
     score: 0,
     aptitudeScore: 0,
     interestsScore: { analytical: 0, creative: 0, social: 0, technical: 0, managerial: 0 },
     personalityType: "Pending Completion",
+    questions: questions,
   };
-  fileDb.saveAssessment(req.params.userId, newAssessment);
+  fileDb.saveAssessment(userId, newAssessment);
   res.json(newAssessment);
 });
 
-app.post("/api/assessment/:userId/reset", (req, res) => {
-  const newAssessment = {
+app.post("/api/assessment/:userId/reset", async (req, res) => {
+  const userId = req.params.userId;
+  const user = fileDb.getUserById(userId);
+  
+  const questions = await generateDynamicQuestions(user);
+
+  const newAssessment: Assessment = {
     userId: req.params.userId,
     answers: {},
     completed: false,
@@ -267,6 +334,7 @@ app.post("/api/assessment/:userId/reset", (req, res) => {
     aptitudeScore: 0,
     interestsScore: { analytical: 0, creative: 0, social: 0, technical: 0, managerial: 0 },
     personalityType: "Pending Completion",
+    questions: questions,
   };
   fileDb.saveAssessment(req.params.userId, newAssessment);
   res.json(newAssessment);

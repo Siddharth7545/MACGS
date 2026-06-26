@@ -442,6 +442,101 @@
         "education": [],
         "certifications": []
       }
+    },
+    {
+      "id": "u_1782491658019",
+      "name": "T22",
+      "email": "t22@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-26T16:34:18.019Z",
+      "lastLogin": "2026-06-26T16:34:18.019Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782491669766",
+      "name": "T23",
+      "email": "t23@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-26T16:34:29.766Z",
+      "lastLogin": "2026-06-26T16:34:29.766Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782492010060",
+      "name": "T24",
+      "email": "t24@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-26T16:40:10.060Z",
+      "lastLogin": "2026-06-26T16:40:10.060Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782492272237",
+      "name": "T25",
+      "email": "t25@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-26T16:44:32.238Z",
+      "lastLogin": "2026-06-26T16:44:32.238Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782492298475",
+      "name": "T26",
+      "email": "t26@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-26T16:44:58.475Z",
+      "lastLogin": "2026-06-26T16:44:58.475Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
     }
   ],
   "assessments": {
@@ -661,31 +756,262 @@
     },
     "u_1782447255178": {
       "userId": "u_1782447255178",
-      "answers": {
-        "apt_1": "correct",
-        "apt_2": "correct",
-        "apt_3": "incorrect_2",
-        "apt_4": "incorrect_2",
-        "int_1": "C",
-        "int_2": "C",
-        "int_3": "D",
-        "per_1": "C",
-        "per_2": "B",
-        "per_3": "B"
-      },
-      "completed": true,
-      "score": 43,
-      "aptitudeScore": 70,
+      "answers": {},
+      "completed": false,
+      "score": 0,
+      "aptitudeScore": 0,
       "interestsScore": {
-        "analytical": 40,
-        "creative": 15,
-        "social": 70,
-        "technical": 50,
-        "managerial": 20
+        "analytical": 0,
+        "creative": 0,
+        "social": 0,
+        "technical": 0,
+        "managerial": 0
       },
-      "personalityType": "People-Centric Specialist",
-      "analysisText": "You derive energy and inspiration from direct communication, team syncs, and mentorship, aiming to organize programs that cultivate collective alignment.",
-      "completedAt": "2026-06-26T04:16:36.499Z"
+      "personalityType": "Pending Completion",
+      "questions": [
+        {
+          "id": "apt_1",
+          "category": "aptitude",
+          "text": "In Python, what is the outcome of [x**2 for x in range(3) if x % 2 == 0]?",
+          "options": [
+            {
+              "label": "[0, 4]",
+              "value": "correct"
+            },
+            {
+              "label": "[0, 1, 4]",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "[1, 9]",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "[0, 2, 4]",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_2",
+          "category": "aptitude",
+          "text": "When deploying a Java web application, which design pattern best facilitates loosely coupled components between the Controller and the Service layer?",
+          "options": [
+            {
+              "label": "Dependency Injection",
+              "value": "correct"
+            },
+            {
+              "label": "Singleton Pattern",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "Factory Method",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "Bridge Pattern",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_3",
+          "category": "aptitude",
+          "text": "If a server receives a client request that violates a CORS policy, what is the primary indicator that the handshake failed?",
+          "options": [
+            {
+              "label": "The browser blocks the response at the origin level",
+              "value": "correct"
+            },
+            {
+              "label": "The server throws a 500 internal error",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "The socket connection timeout exceeds 30 seconds",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "The application returns a 404 header by default",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_4",
+          "category": "aptitude",
+          "text": "In a multithreaded Java environment, which keyword ensures that a block of code is executed by only one thread at a time?",
+          "options": [
+            {
+              "label": "synchronized",
+              "value": "correct"
+            },
+            {
+              "label": "volatile",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "atomic",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "static",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "int_1",
+          "category": "interests",
+          "text": "Which task would you find most fulfilling in a daily development routine?",
+          "options": [
+            {
+              "label": "Designing architectural diagrams for a new web service",
+              "value": "A"
+            },
+            {
+              "label": "Optimizing existing backend database queries",
+              "value": "B"
+            },
+            {
+              "label": "Mentoring team members on code documentation",
+              "value": "C"
+            },
+            {
+              "label": "Building interactive UI components with modern frameworks",
+              "value": "D"
+            },
+            {
+              "label": "Managing project timelines and sprint backlogs",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "int_2",
+          "category": "interests",
+          "text": "How do you prefer to spend your time learning about new web technologies?",
+          "options": [
+            {
+              "label": "Reading research papers on emerging protocols",
+              "value": "A"
+            },
+            {
+              "label": "Building side projects from scratch",
+              "value": "B"
+            },
+            {
+              "label": "Collaborating in open-source communities",
+              "value": "C"
+            },
+            {
+              "label": "Analyzing high-traffic application case studies",
+              "value": "D"
+            },
+            {
+              "label": "Attending webinars on architectural patterns",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "int_3",
+          "category": "interests",
+          "text": "When tackling a technical debt issue, which aspect gives you the most satisfaction?",
+          "options": [
+            {
+              "label": "Re-structuring legacy spaghetti code into modular patterns",
+              "value": "A"
+            },
+            {
+              "label": "Developing a new tool that automates the refactoring process",
+              "value": "B"
+            },
+            {
+              "label": "Guiding the team to adopt cleaner standards",
+              "value": "C"
+            },
+            {
+              "label": "Improving the user-facing performance of the application",
+              "value": "D"
+            },
+            {
+              "label": "Documenting the new architecture for future scalability",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "per_1",
+          "category": "personality",
+          "text": "When faced with an ambiguous deadline for a web feature, how do you typically proceed?",
+          "options": [
+            {
+              "label": "Define strict requirements with stakeholders immediately",
+              "value": "A"
+            },
+            {
+              "label": "Draft a rapid prototype to uncover potential constraints",
+              "value": "B"
+            },
+            {
+              "label": "Prioritize the most stable architectural components",
+              "value": "C"
+            },
+            {
+              "label": "Consult with team members to gauge realistic scope",
+              "value": "D"
+            }
+          ]
+        },
+        {
+          "id": "per_2",
+          "category": "personality",
+          "text": "How do you respond when your code review receives critical feedback?",
+          "options": [
+            {
+              "label": "View it as an opportunity to master advanced patterns",
+              "value": "A"
+            },
+            {
+              "label": "Validate the reviewer's concerns with independent tests",
+              "value": "B"
+            },
+            {
+              "label": "Discuss the trade-offs to reach a shared understanding",
+              "value": "C"
+            },
+            {
+              "label": "Iterate quickly on the implementation based on input",
+              "value": "D"
+            }
+          ]
+        },
+        {
+          "id": "per_3",
+          "category": "personality",
+          "text": "In a team coding session, which role do you naturally fall into?",
+          "options": [
+            {
+              "label": "The strategic planner who maps the data flow",
+              "value": "A"
+            },
+            {
+              "label": "The debugger who finds the edge cases",
+              "value": "B"
+            },
+            {
+              "label": "The mediator who aligns different coding styles",
+              "value": "C"
+            },
+            {
+              "label": "The driver who implements the core features",
+              "value": "D"
+            }
+          ]
+        }
+      ]
     },
     "u_1782447538856": {
       "userId": "u_1782447538856",
@@ -755,6 +1081,1057 @@
       "personalityType": "Creative Champion",
       "analysisText": "Your profile suggests an innate inclination toward explorative and expressive work, where conventional frameworks may feel restrictive. As a student beginning your journey, your focus on interest-driven activities rather than rigid technical perfection indicates that you thrive best in environments that prioritize vision and human-centric design over purely mechanical execution. You possess the raw potential to shape abstract ideas into impactful realities when given the space to experiment without the pressure of immediate, error-free technical precision.\n\nTo reach your highest potential, seek out dynamic workspaces that champion innovation and collaborative brainstorming sessions. Your ideal environment is one that rewards curiosity and adaptive thinking, providing you with a canvas to influence projects through your unique perspective. By surrounding yourself with teams that value unconventional problem-solving, you will find the momentum needed to turn your creative interests into a defining career path that merges personal passion with professional mastery.",
       "completedAt": "2026-06-26T16:18:13.153Z"
+    },
+    "u_1782491658019": {
+      "userId": "u_1782491658019",
+      "answers": {},
+      "completed": false,
+      "score": 0,
+      "aptitudeScore": 0,
+      "interestsScore": {
+        "analytical": 0,
+        "creative": 0,
+        "social": 0,
+        "technical": 0,
+        "managerial": 0
+      },
+      "personalityType": "Pending Completion"
+    },
+    "u_1782491669766": {
+      "userId": "u_1782491669766",
+      "answers": {},
+      "completed": false,
+      "score": 0,
+      "aptitudeScore": 0,
+      "interestsScore": {
+        "analytical": 0,
+        "creative": 0,
+        "social": 0,
+        "technical": 0,
+        "managerial": 0
+      },
+      "personalityType": "Pending Completion",
+      "questions": [
+        {
+          "id": "apt_1",
+          "category": "aptitude",
+          "text": "In a software development lifecycle, which stage primarily focuses on finding defects before the product is released to users?",
+          "options": [
+            {
+              "label": "Quality Assurance Testing",
+              "value": "correct"
+            },
+            {
+              "label": "Requirements Gathering",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "Deployment",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "Initial Ideation",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_2",
+          "category": "aptitude",
+          "text": "What is the output of the logical expression: (True AND False) OR (True AND True)?",
+          "options": [
+            {
+              "label": "True",
+              "value": "correct"
+            },
+            {
+              "label": "False",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "Null",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "Undefined",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_3",
+          "category": "aptitude",
+          "text": "If a process takes 400ms to complete and needs to run 10 times in parallel on a system that can only handle 4 at a time, what is the most likely bottleneck?",
+          "options": [
+            {
+              "label": "Resource contention",
+              "value": "correct"
+            },
+            {
+              "label": "Network latency",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "Syntax error",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "Hardware overheating",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_4",
+          "category": "aptitude",
+          "text": "Which data structure follows the Last-In, First-Out (LIFO) principle?",
+          "options": [
+            {
+              "label": "Stack",
+              "value": "correct"
+            },
+            {
+              "label": "Queue",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "Linked List",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "Hash Map",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "int_1",
+          "category": "interests",
+          "text": "I enjoy solving complex architectural problems and building systems from the ground up.",
+          "options": [
+            {
+              "label": "Strongly Disagree",
+              "value": "A"
+            },
+            {
+              "label": "Disagree",
+              "value": "B"
+            },
+            {
+              "label": "Neutral",
+              "value": "C"
+            },
+            {
+              "label": "Agree",
+              "value": "D"
+            },
+            {
+              "label": "Strongly Agree",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "int_2",
+          "category": "interests",
+          "text": "I prefer tasks that involve analyzing large sets of data to uncover hidden patterns.",
+          "options": [
+            {
+              "label": "Strongly Disagree",
+              "value": "A"
+            },
+            {
+              "label": "Disagree",
+              "value": "B"
+            },
+            {
+              "label": "Neutral",
+              "value": "C"
+            },
+            {
+              "label": "Agree",
+              "value": "D"
+            },
+            {
+              "label": "Strongly Agree",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "int_3",
+          "category": "interests",
+          "text": "I find satisfaction in explaining technical concepts to non-technical team members.",
+          "options": [
+            {
+              "label": "Strongly Disagree",
+              "value": "A"
+            },
+            {
+              "label": "Disagree",
+              "value": "B"
+            },
+            {
+              "label": "Neutral",
+              "value": "C"
+            },
+            {
+              "label": "Agree",
+              "value": "D"
+            },
+            {
+              "label": "Strongly Agree",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "per_1",
+          "category": "personality",
+          "text": "When facing a tight deadline, my primary reaction is to:",
+          "options": [
+            {
+              "label": "Prioritize tasks meticulously",
+              "value": "A"
+            },
+            {
+              "label": "Collaborate immediately for support",
+              "value": "B"
+            },
+            {
+              "label": "Focus intensely on individual output",
+              "value": "C"
+            },
+            {
+              "label": "Step back to rethink the workflow",
+              "value": "D"
+            }
+          ]
+        },
+        {
+          "id": "per_2",
+          "category": "personality",
+          "text": "In a group project, I am most comfortable being the person who:",
+          "options": [
+            {
+              "label": "Organizes the team structure",
+              "value": "A"
+            },
+            {
+              "label": "Ensures the technical accuracy",
+              "value": "B"
+            },
+            {
+              "label": "Facilitates communication",
+              "value": "C"
+            },
+            {
+              "label": "Identifies potential risks",
+              "value": "D"
+            }
+          ]
+        },
+        {
+          "id": "per_3",
+          "category": "personality",
+          "text": "I prefer work environments that are:",
+          "options": [
+            {
+              "label": "Fast-paced and dynamic",
+              "value": "A"
+            },
+            {
+              "label": "Structured and predictable",
+              "value": "B"
+            },
+            {
+              "label": "Highly collaborative and social",
+              "value": "C"
+            },
+            {
+              "label": "Autonomous and research-oriented",
+              "value": "D"
+            }
+          ]
+        }
+      ]
+    },
+    "u_1782492010060": {
+      "userId": "u_1782492010060",
+      "answers": {},
+      "completed": false,
+      "score": 0,
+      "aptitudeScore": 0,
+      "interestsScore": {
+        "analytical": 0,
+        "creative": 0,
+        "social": 0,
+        "technical": 0,
+        "managerial": 0
+      },
+      "personalityType": "Pending Completion",
+      "questions": [
+        {
+          "id": "apt_1",
+          "category": "aptitude",
+          "text": "If a system requires a latency of under 50ms and the current architecture processes data in parallel across 4 nodes with 15ms per node, what is the theoretical bottleneck if one node experiences a synchronization lag of 10ms?",
+          "options": [
+            {
+              "label": "The total latency becomes 60ms, exceeding the limit.",
+              "value": "correct"
+            },
+            {
+              "label": "The total latency remains 15ms due to parallel processing.",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "The total latency is 25ms, which is within limits.",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "The system crashes instantly due to buffer overflow.",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_2",
+          "category": "aptitude",
+          "text": "Given a recursive function that calculates tree depth, if each branch doubles the stack usage and the depth is 5, how many units of memory are consumed compared to a base depth of 1?",
+          "options": [
+            {
+              "label": "16 times more memory.",
+              "value": "correct"
+            },
+            {
+              "label": "5 times more memory.",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "32 times more memory.",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "25 times more memory.",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_3",
+          "category": "aptitude",
+          "text": "You are managing a data stream where 80% of packets arrive in order. If the error correction protocol adds a 20% overhead to all packets, what is the efficiency ratio of payload vs total bandwidth?",
+          "options": [
+            {
+              "label": "0.833",
+              "value": "correct"
+            },
+            {
+              "label": "0.800",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "0.960",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "1.200",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_4",
+          "category": "aptitude",
+          "text": "In a logic grid where 'A' is north of 'B' and 'C' is east of 'A', but 'B' is west of 'D', what is the relative position of 'C' and 'D'?",
+          "options": [
+            {
+              "label": "C is north-east of D.",
+              "value": "correct"
+            },
+            {
+              "label": "C is south-west of D.",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "C is directly west of D.",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "Cannot be determined.",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "int_1",
+          "category": "interests",
+          "text": "Which of these project environments would you prefer to spend 40 hours a week in?",
+          "options": [
+            {
+              "label": "High-precision laboratory experimentation.",
+              "value": "A"
+            },
+            {
+              "label": "Fast-paced venture capital strategy meetings.",
+              "value": "B"
+            },
+            {
+              "label": "Community-driven open source development.",
+              "value": "C"
+            },
+            {
+              "label": "Autonomous design of artistic installations.",
+              "value": "D"
+            },
+            {
+              "label": "Organizing complex logistical supply chains.",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "int_2",
+          "category": "interests",
+          "text": "When learning a new technology, your primary motivation is:",
+          "options": [
+            {
+              "label": "To solve a tangible, immediate problem.",
+              "value": "A"
+            },
+            {
+              "label": "To understand the underlying theoretical physics.",
+              "value": "B"
+            },
+            {
+              "label": "To create something that didn't exist before.",
+              "value": "C"
+            },
+            {
+              "label": "To improve efficiency for a group of people.",
+              "value": "D"
+            },
+            {
+              "label": "To master the industry standards for career gain.",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "int_3",
+          "category": "interests",
+          "text": "What type of legacy would you prefer to leave behind?",
+          "options": [
+            {
+              "label": "A set of proven analytical frameworks.",
+              "value": "A"
+            },
+            {
+              "label": "A library of innovative, creative products.",
+              "value": "B"
+            },
+            {
+              "label": "A more cohesive and supported community.",
+              "value": "C"
+            },
+            {
+              "label": "A highly efficient organizational structure.",
+              "value": "D"
+            },
+            {
+              "label": "A landmark invention that changed the status quo.",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "per_1",
+          "category": "personality",
+          "text": "During a high-stakes team project, you realize a peer has made a significant error. You:",
+          "options": [
+            {
+              "label": "Correct it silently and move on.",
+              "value": "A"
+            },
+            {
+              "label": "Address it immediately with the team to ensure accuracy.",
+              "value": "B"
+            },
+            {
+              "label": "Discuss it privately with the peer to avoid embarrassment.",
+              "value": "C"
+            },
+            {
+              "label": "Wait until the project completion to debrief.",
+              "value": "D"
+            }
+          ]
+        },
+        {
+          "id": "per_2",
+          "category": "personality",
+          "text": "Which statement best describes your decision-making process under pressure?",
+          "options": [
+            {
+              "label": "I rely on past experience and proven heuristics.",
+              "value": "A"
+            },
+            {
+              "label": "I gather as much live data as possible before acting.",
+              "value": "B"
+            },
+            {
+              "label": "I trust my intuition and act quickly.",
+              "value": "C"
+            },
+            {
+              "label": "I consult with stakeholders to ensure buy-in.",
+              "value": "D"
+            }
+          ]
+        },
+        {
+          "id": "per_3",
+          "category": "personality",
+          "text": "How do you handle ambiguous instructions in a technical task?",
+          "options": [
+            {
+              "label": "I define my own parameters and document them.",
+              "value": "A"
+            },
+            {
+              "label": "I ask for clarification until the scope is rigid.",
+              "value": "B"
+            },
+            {
+              "label": "I explore multiple interpretations to find the best fit.",
+              "value": "C"
+            },
+            {
+              "label": "I delegate the interpretation to someone more senior.",
+              "value": "D"
+            }
+          ]
+        }
+      ]
+    },
+    "u_1782492272237": {
+      "userId": "u_1782492272237",
+      "answers": {},
+      "completed": false,
+      "score": 0,
+      "aptitudeScore": 0,
+      "interestsScore": {
+        "analytical": 0,
+        "creative": 0,
+        "social": 0,
+        "technical": 0,
+        "managerial": 0
+      },
+      "personalityType": "Pending Completion",
+      "questions": [
+        {
+          "id": "apt_1",
+          "category": "aptitude",
+          "text": "If a recursive function calls itself with a decrementing integer n, and the base case is n < 0, how many total calls are executed for an input of 3 (including the initial call)?",
+          "options": [
+            {
+              "label": "5",
+              "value": "correct"
+            },
+            {
+              "label": "3",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "4",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "6",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_2",
+          "category": "aptitude",
+          "text": "A network topology uses 6 nodes connected in a complete graph. How many unique links are required to connect every node directly to every other node?",
+          "options": [
+            {
+              "label": "15",
+              "value": "correct"
+            },
+            {
+              "label": "12",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "20",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "30",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_3",
+          "category": "aptitude",
+          "text": "In a binary search tree containing nodes [10, 5, 15, 2, 7], which sequence represents a valid post-order traversal?",
+          "options": [
+            {
+              "label": "2, 7, 5, 15, 10",
+              "value": "correct"
+            },
+            {
+              "label": "10, 5, 2, 7, 15",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "2, 5, 7, 10, 15",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "15, 10, 7, 5, 2",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_4",
+          "category": "aptitude",
+          "text": "If a CPU cycle time is 0.5 nanoseconds, what is the clock frequency in gigahertz?",
+          "options": [
+            {
+              "label": "2 GHz",
+              "value": "correct"
+            },
+            {
+              "label": "0.5 GHz",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "5 GHz",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "1 GHz",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "int_1",
+          "category": "interests",
+          "text": "You are presented with a complex, legacy codebase. Which task are you most naturally drawn to?",
+          "options": [
+            {
+              "label": "Refactoring the logic for maximum efficiency (Investigative)",
+              "value": "A"
+            },
+            {
+              "label": "Designing a modern, user-friendly interface for the output (Artistic)",
+              "value": "B"
+            },
+            {
+              "label": "Standardizing documentation and operational protocols (Conventional)",
+              "value": "C"
+            },
+            {
+              "label": "Leading a team to implement new features (Enterprising)",
+              "value": "D"
+            },
+            {
+              "label": "Building hardware tools to test the code performance (Realistic)",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "int_2",
+          "category": "interests",
+          "text": "In a team environment, which role do you find most fulfilling?",
+          "options": [
+            {
+              "label": "Solving the most difficult technical bug (Investigative)",
+              "value": "A"
+            },
+            {
+              "label": "Coordinating with clients to define project scope (Enterprising)",
+              "value": "B"
+            },
+            {
+              "label": "Ensuring the team follows best practices (Conventional)",
+              "value": "C"
+            },
+            {
+              "label": "Experimenting with creative solutions for the UI (Artistic)",
+              "value": "D"
+            },
+            {
+              "label": "Optimizing the physical production workflow (Realistic)",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "int_3",
+          "category": "interests",
+          "text": "Which project type would you volunteer for during a hackathon?",
+          "options": [
+            {
+              "label": "Developing a novel algorithm to analyze data (Investigative)",
+              "value": "A"
+            },
+            {
+              "label": "Creating an aesthetically striking interactive dashboard (Artistic)",
+              "value": "B"
+            },
+            {
+              "label": "Streamlining the development deployment pipeline (Conventional)",
+              "value": "C"
+            },
+            {
+              "label": "Pitching a new product concept to judges (Enterprising)",
+              "value": "D"
+            },
+            {
+              "label": "Building a custom robotic component (Realistic)",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "per_1",
+          "category": "personality",
+          "text": "When facing an ambiguous technical problem, how do you proceed?",
+          "options": [
+            {
+              "label": "Analyze all variables until a pattern emerges",
+              "value": "A"
+            },
+            {
+              "label": "Consult with team members to find a consensus",
+              "value": "B"
+            },
+            {
+              "label": "Experiment with different solutions until one works",
+              "value": "C"
+            },
+            {
+              "label": "Break the problem down into strict, repeatable steps",
+              "value": "D"
+            }
+          ]
+        },
+        {
+          "id": "per_2",
+          "category": "personality",
+          "text": "How do you handle project deadlines?",
+          "options": [
+            {
+              "label": "Maintain a rigid schedule to avoid last-minute issues",
+              "value": "A"
+            },
+            {
+              "label": "Work in intense bursts to ensure high-quality output",
+              "value": "B"
+            },
+            {
+              "label": "Focus on constant communication to manage expectations",
+              "value": "C"
+            },
+            {
+              "label": "Prioritize the most challenging tasks to solve them early",
+              "value": "D"
+            }
+          ]
+        },
+        {
+          "id": "per_3",
+          "category": "personality",
+          "text": "What is your preference for professional learning?",
+          "options": [
+            {
+              "label": "Deep diving into documentation and technical papers",
+              "value": "A"
+            },
+            {
+              "label": "Attending workshops and collaborative study groups",
+              "value": "B"
+            },
+            {
+              "label": "Applying new skills immediately to a side project",
+              "value": "C"
+            },
+            {
+              "label": "Structuring my learning path with a certification goal",
+              "value": "D"
+            }
+          ]
+        }
+      ]
+    },
+    "u_1782492298475": {
+      "userId": "u_1782492298475",
+      "answers": {},
+      "completed": false,
+      "score": 0,
+      "aptitudeScore": 0,
+      "interestsScore": {
+        "analytical": 0,
+        "creative": 0,
+        "social": 0,
+        "technical": 0,
+        "managerial": 0
+      },
+      "personalityType": "Pending Completion",
+      "questions": [
+        {
+          "id": "apt_1",
+          "category": "aptitude",
+          "text": "When integrating a pre-trained ML model into a microservice, what is the most significant bottleneck if the model resides on local disk rather than memory during inference cycles?",
+          "options": [
+            {
+              "label": "I/O latency during model weight loading",
+              "value": "correct"
+            },
+            {
+              "label": "CPU register overflow errors",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "Network packet fragmentation",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "Heap memory fragmentation of the runtime environment",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_2",
+          "category": "aptitude",
+          "text": "If a feature engineering pipeline for ML integration requires real-time aggregation of streaming telemetry data, which architectural pattern minimizes end-to-end latency?",
+          "options": [
+            {
+              "label": "Stateful stream processing with windowing",
+              "value": "correct"
+            },
+            {
+              "label": "Batch processing via overnight ETL jobs",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "Polling a relational database every 5 seconds",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "Client-side request pre-fetching",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_3",
+          "category": "aptitude",
+          "text": "In the context of model deployment, what does 'Concept Drift' specifically imply for the maintenance of an integrated software system?",
+          "options": [
+            {
+              "label": "The relationship between input features and target labels has changed over time",
+              "value": "correct"
+            },
+            {
+              "label": "The model has reached its maximum iteration limit",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "The underlying server hardware is failing to keep up with prediction frequency",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "The API documentation is no longer synchronized with the model schema",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_4",
+          "category": "aptitude",
+          "text": "When using a quantization technique to optimize an ML model for edge deployment, which primary trade-off must be managed?",
+          "options": [
+            {
+              "label": "Precision loss versus computational efficiency",
+              "value": "correct"
+            },
+            {
+              "label": "Data privacy versus encryption speed",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "Scalability versus database throughput",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "Training epoch count versus memory bus width",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "int_1",
+          "category": "interests",
+          "text": "How do you prefer to spend your time when working on an ML-integrated software project?",
+          "options": [
+            {
+              "label": "Designing the low-level architecture for model deployment",
+              "value": "A"
+            },
+            {
+              "label": "Analyzing performance metrics to improve prediction accuracy",
+              "value": "B"
+            },
+            {
+              "label": "Collaborating with stakeholders to define business logic",
+              "value": "C"
+            },
+            {
+              "label": "Documentation and system governance",
+              "value": "D"
+            },
+            {
+              "label": "Writing creative scripts for model automation",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "int_2",
+          "category": "interests",
+          "text": "What type of technical challenge in ML integration do you find most fulfilling?",
+          "options": [
+            {
+              "label": "Optimizing API response times for inference",
+              "value": "A"
+            },
+            {
+              "label": "Exploring novel neural network architectures",
+              "value": "B"
+            },
+            {
+              "label": "Building user-friendly interfaces for ML outputs",
+              "value": "C"
+            },
+            {
+              "label": "Standardizing deployment pipelines for high-availability",
+              "value": "D"
+            },
+            {
+              "label": "Investigating how models make specific predictions",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "int_3",
+          "category": "interests",
+          "text": "Which aspect of the machine learning lifecycle interests you the most?",
+          "options": [
+            {
+              "label": "Building the infrastructure (MLOps)",
+              "value": "A"
+            },
+            {
+              "label": "Experimenting with datasets and hyper-parameters",
+              "value": "B"
+            },
+            {
+              "label": "Designing the integration layer for product teams",
+              "value": "C"
+            },
+            {
+              "label": "Managing project timelines and release cycles",
+              "value": "D"
+            },
+            {
+              "label": "Developing creative solutions to model bias",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "per_1",
+          "category": "personality",
+          "text": "When an integrated machine learning model produces an unexpected result, what is your immediate response?",
+          "options": [
+            {
+              "label": "Systematically debug the integration code to isolate the point of failure.",
+              "value": "A"
+            },
+            {
+              "label": "Discuss the anomaly with the team to brainstorm root causes.",
+              "value": "B"
+            },
+            {
+              "label": "Review the data quality pipelines for potential environmental changes.",
+              "value": "C"
+            },
+            {
+              "label": "Ensure the business stakeholders are informed of the potential impact.",
+              "value": "D"
+            }
+          ]
+        },
+        {
+          "id": "per_2",
+          "category": "personality",
+          "text": "In a team environment, what role do you naturally assume during the development of a complex ML software integration?",
+          "options": [
+            {
+              "label": "The Technical Lead who enforces code standards.",
+              "value": "A"
+            },
+            {
+              "label": "The Mediator who balances model performance with business requirements.",
+              "value": "B"
+            },
+            {
+              "label": "The Innovator who challenges current integration assumptions.",
+              "value": "C"
+            },
+            {
+              "label": "The Executor who ensures tasks are documented and tracked.",
+              "value": "D"
+            }
+          ]
+        },
+        {
+          "id": "per_3",
+          "category": "personality",
+          "text": "How do you handle the ambiguity inherent in model-based software behavior?",
+          "options": [
+            {
+              "label": "I prefer building observability dashboards to quantify the uncertainty.",
+              "value": "A"
+            },
+            {
+              "label": "I view it as an opportunity for continuous improvement and learning.",
+              "value": "B"
+            },
+            {
+              "label": "I rely on strict unit testing and sandboxing to mitigate risks.",
+              "value": "C"
+            },
+            {
+              "label": "I focus on clear communication to manage expectations for users.",
+              "value": "D"
+            }
+          ]
+        }
+      ]
     }
   },
   "recommendations": {
