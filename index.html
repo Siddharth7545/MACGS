@@ -1,6 +1,79 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      // Silence benign Vite HMR WebSocket connection errors in sandboxed preview environments
+      (function() {
+        const silenceError = (messageOrReason) => {
+          const str = String(messageOrReason || '');
+          return (
+            str.includes('WebSocket') ||
+            str.includes('vite') ||
+            str.includes('ws://') ||
+            str.includes('wss://') ||
+            str.includes('hmr')
+          );
+        };
+
+        window.addEventListener('unhandledrejection', function(event) {
+          const reason = event.reason?.message || String(event.reason || '');
+          if (silenceError(reason)) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        }, true);
+
+        window.addEventListener('error', function(event) {
+          const msg = event.message || '';
+          if (silenceError(msg)) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        }, true);
+
+        const RealWebSocket = window.WebSocket;
+        if (RealWebSocket) {
+          const WrappedWebSocket = function(url, protocols) {
+            const urlStr = String(url || '');
+            if (
+              urlStr.includes('vite') ||
+              urlStr.includes('hmr') ||
+              urlStr.includes('ws://') ||
+              urlStr.includes('wss://')
+            ) {
+              console.log('Intercepted and mocked sandboxed Vite WebSocket connection to:', urlStr);
+              const mockWs = Object.create(RealWebSocket.prototype);
+              Object.defineProperties(mockWs, {
+                url: { value: urlStr, writable: true, enumerable: true, configurable: true },
+                readyState: { value: 0, writable: true, enumerable: true, configurable: true }, // CONNECTING
+                bufferedAmount: { value: 0, writable: true, enumerable: true, configurable: true },
+                extensions: { value: '', writable: true, enumerable: true, configurable: true },
+                protocol: { value: '', writable: true, enumerable: true, configurable: true },
+                binaryType: { value: 'blob', writable: true, enumerable: true, configurable: true },
+                onopen: { value: null, writable: true, enumerable: true, configurable: true },
+                onclose: { value: null, writable: true, enumerable: true, configurable: true },
+                onerror: { value: null, writable: true, enumerable: true, configurable: true },
+                onmessage: { value: null, writable: true, enumerable: true, configurable: true },
+                send: { value: function() {}, writable: true, enumerable: true, configurable: true },
+                close: { value: function() {}, writable: true, enumerable: true, configurable: true },
+                addEventListener: { value: function() {}, writable: true, enumerable: true, configurable: true },
+                removeEventListener: { value: function() {}, writable: true, enumerable: true, configurable: true },
+                dispatchEvent: { value: function() { return false; }, writable: true, enumerable: true, configurable: true }
+              });
+              return mockWs;
+            }
+            return new RealWebSocket(url, protocols);
+          };
+          WrappedWebSocket.prototype = RealWebSocket.prototype;
+          for (const key in RealWebSocket) {
+            if (Object.prototype.hasOwnProperty.call(RealWebSocket, key)) {
+              WrappedWebSocket[key] = RealWebSocket[key];
+            }
+          }
+          window.WebSocket = WrappedWebSocket;
+        }
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Google AI Studio App</title>

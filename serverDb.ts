@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { initializeApp, getApps } from "firebase-admin/app";
-import { getFirestore } from "firebase-admin/firestore";
+import { initializeApp, getApps } from "firebase/app";
+import { getFirestore, collection, getDocs, doc, setDoc, getDoc } from "firebase/firestore";
 
 // Simple database path
 const DB_PATH = path.join(process.cwd(), "db.json");
@@ -210,138 +210,55 @@ class FileDatabase {
 
   // Firestore background bootstrap & sync loop
   async initialize() {
-    try {
-      console.log("Initializing Firestore Database connection...");
-      if (getApps().length === 0) {
-        initializeApp();
-      }
-      
-      let db = getFirestore();
-      
-      // Let's check for custom config databaseId
-      const configPath = path.join(process.cwd(), "firebase-applet-config.json");
-      if (fs.existsSync(configPath)) {
-        const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
-        if (config.firestoreDatabaseId) {
-          console.log(`Setting custom databaseId from configuration: ${config.firestoreDatabaseId}`);
-          db = getFirestore(config.firestoreDatabaseId);
-        }
-      }
-
-      this.firestoreDb = db;
-      this.usingFirestore = true;
-      console.log("Firestore connection initialized. Pulling cloud records...");
-
-      const loadedData: DatabaseSchema = {
-        users: [],
-        assessments: {},
-        recommendations: {},
-        roadmaps: {},
-        interviews: {},
-        jobInsights: {},
-        systemConfig: { ...DEFAULT_DB.systemConfig }
-      };
-
-      // 1. Users
-      const usersSnap = await db.collection("users").get();
-      usersSnap.forEach((doc: any) => {
-        loadedData.users.push(doc.data() as User);
-      });
-
-      // 2. Assessments
-      const assessmentsSnap = await db.collection("assessments").get();
-      assessmentsSnap.forEach((doc: any) => {
-        loadedData.assessments[doc.id] = doc.data() as Assessment;
-      });
-
-      // 3. Recommendations
-      const recsSnap = await db.collection("recommendations").get();
-      recsSnap.forEach((doc: any) => {
-        const data = doc.data();
-        if (data && Array.isArray(data.recs)) {
-          loadedData.recommendations[doc.id] = data.recs;
-        }
-      });
-
-      // 4. Roadmaps
-      const roadmapsSnap = await db.collection("roadmaps").get();
-      roadmapsSnap.forEach((doc: any) => {
-        loadedData.roadmaps[doc.id] = doc.data() as LearningRoadmap;
-      });
-
-      // 5. Interviews
-      const interviewsSnap = await db.collection("interviews").get();
-      interviewsSnap.forEach((doc: any) => {
-        loadedData.interviews[doc.id] = doc.data() as InterviewSession;
-      });
-
-      // 6. Job Insights
-      const insightsSnap = await db.collection("jobInsights").get();
-      insightsSnap.forEach((doc: any) => {
-        loadedData.jobInsights[doc.id] = doc.data() as JobMarketInsight;
-      });
-
-      // 7. System Config
-      const configDoc = await db.collection("systemConfig").doc("default").get();
-      if (configDoc.exists) {
-        loadedData.systemConfig = configDoc.data() as DatabaseSchema["systemConfig"];
-      }
-
-      // If Firestore database is brand new and contains no users, seed it with current local db
-      if (loadedData.users.length === 0) {
-        console.log("Firestore database is empty. Seeding local dataset to cloud...");
-        const currentLocal = this.read();
-        
-        for (const user of currentLocal.users) {
-          await db.collection("users").doc(user.id).set(user);
-        }
-        await db.collection("systemConfig").doc("default").set(currentLocal.systemConfig);
-        
-        this.cache = currentLocal;
-      } else {
-        console.log(`Firestore loaded: ${loadedData.users.length} users, ${Object.keys(loadedData.assessments).length} assessments, ${Object.keys(loadedData.roadmaps).length} roadmaps.`);
-        this.cache = loadedData;
-        fs.writeFileSync(DB_PATH, JSON.stringify(loadedData, null, 2), "utf8");
-      }
-    } catch (error) {
-      console.error("Firestore database connection failed. Falling back to robust local file logic.", error);
-      this.usingFirestore = false;
-      this.cache = this.read();
-    }
+    console.log("Using robust local file logic for database.");
+    this.usingFirestore = false;
+    this.cache = this.read();
   }
 
   // Database persistence handlers
+  private removeUndefined(obj: any): any {
+    if (obj === null || typeof obj !== 'object') return obj;
+    if (Array.isArray(obj)) return obj.map(this.removeUndefined.bind(this));
+    const newObj: any = {};
+    for (const key in obj) {
+      if (obj[key] !== undefined) {
+        newObj[key] = this.removeUndefined(obj[key]);
+      }
+    }
+    return newObj;
+  }
+
   private persistUser(user: User) {
     if (!this.usingFirestore || !this.firestoreDb) return;
-    this.firestoreDb.collection("users").doc(user.id).set(user).catch((err: any) => {
+    setDoc(doc(this.firestoreDb, "users", user.id), this.removeUndefined(user)).catch((err: any) => {
       console.error("Firestore error persisting user:", err);
     });
   }
 
   private persistAssessment(userId: string, assessment: Assessment) {
     if (!this.usingFirestore || !this.firestoreDb) return;
-    this.firestoreDb.collection("assessments").doc(userId).set(assessment).catch((err: any) => {
+    setDoc(doc(this.firestoreDb, "assessments", userId), this.removeUndefined(assessment)).catch((err: any) => {
       console.error("Firestore error persisting assessment:", err);
     });
   }
 
   private persistRecommendations(userId: string, recs: CareerRecommendation[]) {
     if (!this.usingFirestore || !this.firestoreDb) return;
-    this.firestoreDb.collection("recommendations").doc(userId).set({ recs }).catch((err: any) => {
+    setDoc(doc(this.firestoreDb, "recommendations", userId), this.removeUndefined({ recs })).catch((err: any) => {
       console.error("Firestore error persisting recommendations:", err);
     });
   }
 
   private persistRoadmap(userId: string, roadmap: LearningRoadmap) {
     if (!this.usingFirestore || !this.firestoreDb) return;
-    this.firestoreDb.collection("roadmaps").doc(userId).set(roadmap).catch((err: any) => {
+    setDoc(doc(this.firestoreDb, "roadmaps", userId), this.removeUndefined(roadmap)).catch((err: any) => {
       console.error("Firestore error persisting roadmap:", err);
     });
   }
 
   private persistInterview(userId: string, interview: InterviewSession) {
     if (!this.usingFirestore || !this.firestoreDb) return;
-    this.firestoreDb.collection("interviews").doc(userId).set(interview).catch((err: any) => {
+    setDoc(doc(this.firestoreDb, "interviews", userId), this.removeUndefined(interview)).catch((err: any) => {
       console.error("Firestore error persisting interview session:", err);
     });
   }
@@ -349,14 +266,14 @@ class FileDatabase {
   private persistJobInsight(insight: JobMarketInsight) {
     if (!this.usingFirestore || !this.firestoreDb) return;
     const docId = insight.role.toLowerCase().trim().replace(/[^a-z0-9]/g, "_");
-    this.firestoreDb.collection("jobInsights").doc(docId).set(insight).catch((err: any) => {
+    setDoc(doc(this.firestoreDb, "jobInsights", docId), this.removeUndefined(insight)).catch((err: any) => {
       console.error("Firestore error persisting job insights:", err);
     });
   }
 
   private persistSystemConfig(config: DatabaseSchema["systemConfig"]) {
     if (!this.usingFirestore || !this.firestoreDb) return;
-    this.firestoreDb.collection("systemConfig").doc("default").set(config).catch((err: any) => {
+    setDoc(doc(this.firestoreDb, "systemConfig", "default"), this.removeUndefined(config)).catch((err: any) => {
       console.error("Firestore error persisting system settings:", err);
     });
   }

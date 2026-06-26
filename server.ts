@@ -33,11 +33,50 @@ function getGeminiClient(): GoogleGenAI | null {
         },
       });
       console.log("Successfully initialized GoogleGenAI client.");
-    } catch (err) {
-      console.error("Failed to initialize GoogleGenAI client:", err);
+    } catch (err: any) {
+      console.warn("Failed to initialize GoogleGenAI client gracefully:", err?.message || err);
     }
   }
   return aiClient;
+}
+
+async function callGeminiWithRetry(
+  params: {
+    model: string;
+    contents: any;
+    config?: any;
+  },
+  maxRetries = 2,
+  baseDelay = 800
+): Promise<any> {
+  let attempt = 0;
+  while (attempt <= maxRetries) {
+    try {
+      const ai = getGeminiClient();
+      if (!ai) {
+        throw new Error("Gemini client not initialized");
+      }
+      const response = await ai.models.generateContent(params);
+      return response;
+    } catch (err: any) {
+      const errMsg = err?.message || String(err);
+      console.warn(`Gemini API call failed (attempt ${attempt + 1}/${maxRetries + 1}):`, errMsg);
+      
+      // If it's a 400 Bad Request, retrying won't help
+      if (errMsg.includes("400") || errMsg.includes("INVALID_ARGUMENT")) {
+        throw err;
+      }
+      
+      attempt++;
+      if (attempt > maxRetries) {
+        throw err;
+      }
+      
+      const delay = baseDelay * Math.pow(2, attempt - 1);
+      console.log(`Retrying Gemini API in ${delay}ms...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
 }
 
 function robustParseJson(text: string | undefined): any {
@@ -157,16 +196,21 @@ app.post("/api/profile/:id", (req, res) => {
   }
 
   const nextProfile = {
-    currentRole: currentRole !== undefined ? currentRole : user.profile.currentRole,
-    targetRole: targetRole !== undefined ? targetRole : user.profile.targetRole,
-    skills: skills !== undefined ? skills : user.profile.skills,
-    interests: interests !== undefined ? interests : user.profile.interests,
-    experience: experience !== undefined ? experience : user.profile.experience,
-    education: education !== undefined ? education : user.profile.education,
-    certifications: certifications !== undefined ? certifications : user.profile.certifications,
+    currentRole: currentRole !== undefined ? currentRole : (user.profile?.currentRole || ""),
+    targetRole: targetRole !== undefined ? targetRole : (user.profile?.targetRole || ""),
+    skills: skills !== undefined ? skills : (user.profile?.skills || []),
+    interests: interests !== undefined ? interests : (user.profile?.interests || []),
+    experience: experience !== undefined ? experience : (user.profile?.experience || []),
+    education: education !== undefined ? education : (user.profile?.education || []),
+    certifications: certifications !== undefined ? certifications : (user.profile?.certifications || []),
   };
 
-  fileDb.updateUserProfile(user.id, nextProfile, { name, userType, profileAnalyzed });
+  const details: any = {};
+  if (name !== undefined) details.name = name;
+  if (userType !== undefined) details.userType = userType;
+  if (profileAnalyzed !== undefined) details.profileAnalyzed = profileAnalyzed;
+
+  fileDb.updateUserProfile(user.id, nextProfile, Object.keys(details).length > 0 ? details : undefined);
   res.json({ message: "Profile updated successfully", profile: nextProfile, name: name ?? user.name, userType: userType ?? user.userType, profileAnalyzed: profileAnalyzed ?? user.profileAnalyzed });
 });
 
@@ -214,101 +258,124 @@ app.get("/api/assessment/:userId", (req, res) => {
   res.json(newAssessment);
 });
 
+app.post("/api/assessment/:userId/reset", (req, res) => {
+  const newAssessment = {
+    userId: req.params.userId,
+    answers: {},
+    completed: false,
+    score: 0,
+    aptitudeScore: 0,
+    interestsScore: { analytical: 0, creative: 0, social: 0, technical: 0, managerial: 0 },
+    personalityType: "Pending Completion",
+  };
+  fileDb.saveAssessment(req.params.userId, newAssessment);
+  res.json(newAssessment);
+});
+
 app.post("/api/assessment/:userId/submit", async (req, res) => {
-  const { answers } = req.body;
-  const userId = req.params.userId;
-  const user = fileDb.getUserById(userId);
-  if (!user) {
-    return res.status(404).json({ error: "User not found" });
-  }
-
-  // Calculate scores (weighted profile computation)
-  let analytical = 0, creative = 0, social = 0, technical = 0, managerial = 0;
-  let aptitudePoints = 0;
-
-  // Let's analyze answers mapping
-  Object.keys(answers).forEach((qId) => {
-    const val = answers[qId] || "";
-    if (qId.startsWith("apt_")) {
-      if (val === "correct" || val === "A" || val === "B") aptitudePoints += 20;
-    } else if (qId.startsWith("int_")) {
-      if (val === "A") creative += 25;
-      else if (val === "B") analytical += 25;
-      else if (val === "C") social += 25;
-      else if (val === "D") technical += 25;
-      else managerial += 25;
-    } else {
-      // Personality Qs
-      if (val === "A") creative += 10;
-      else if (val === "B") analytical += 10;
-      else if (val === "C") social += 10;
-      else technical += 10;
+  try {
+    const answers = req.body?.answers || {};
+    const userId = req.params.userId;
+    const user = fileDb.getUserById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
     }
-  });
 
-  const aptitudeScore = Math.min(100, Math.max(15, aptitudePoints + 30)); // Seed starting value
-  const interestsScore = {
-    analytical: Math.min(100, Math.round(analytical + 20)),
-    creative: Math.min(100, Math.round(creative + 15)),
-    social: Math.min(100, Math.round(social + 10)),
-    technical: Math.min(100, Math.round(technical + 25)),
-    managerial: Math.min(100, Math.round(managerial + 20)),
-  };
+    // Calculate scores (weighted profile computation)
+    let analytical = 0, creative = 0, social = 0, technical = 0, managerial = 0;
+    let aptitudePoints = 0;
 
-  const ai = getGeminiClient();
-  let personalityType = "Analytical Strategist";
-  let analysisText = "You show strong qualities of systematic deduction and analytical thinking, thriving in technical environments where structured thinking translates to robust outcomes.";
+    // Let's analyze answers mapping
+    Object.keys(answers).forEach((qId) => {
+      const val = answers[qId] || "";
+      if (qId.startsWith("apt_")) {
+        if (val === "correct" || val === "A" || val === "B") aptitudePoints += 20;
+      } else if (qId.startsWith("int_")) {
+        if (val === "A") creative += 25;
+        else if (val === "B") analytical += 25;
+        else if (val === "C") social += 25;
+        else if (val === "D") technical += 25;
+        else managerial += 25;
+      } else {
+        // Personality Qs
+        if (val === "A") creative += 10;
+        else if (val === "B") analytical += 10;
+        else if (val === "C") social += 10;
+        else technical += 10;
+      }
+    });
 
-  if (ai) {
-    try {
-      const prompt = `Evaluate answers to this career assessment: ${JSON.stringify(answers)}.
-      The user profile is: Name: ${user.name}, User Type: ${user.userType}, Current Skills: ${user.profile.skills.join(", ")}.
-      Please analyze the user's career personality type (e.g., 'Tech-Innovator', 'Analytical Strategist', 'Creative Champion', or 'Social Catalyst'), interest levels (analytical, creative, social, technical, managerial out of 100), and write a 2-paragraph inspiring analysis on their optimal workplace environment.
-      Respond ONLY in valid, parseable JSON of this shape:
-      {
-        "personalityType": "Your determined archetype string",
-        "analysisText": "The 2-paragraph analysis text"
-      }`;
+    const aptitudeScore = Math.min(100, Math.max(15, aptitudePoints + 30)); // Seed starting value
+    const interestsScore = {
+      analytical: Math.min(100, Math.round(analytical + 20)),
+      creative: Math.min(100, Math.round(creative + 15)),
+      social: Math.min(100, Math.round(social + 10)),
+      technical: Math.min(100, Math.round(technical + 25)),
+      managerial: Math.min(100, Math.round(managerial + 20)),
+    };
 
-      const aiRes = await ai.models.generateContent({
-        model: "gemini-3.5-flash",
-        contents: prompt,
-        config: {
-          responseMimeType: "application/json",
-        },
-      });
+    const ai = getGeminiClient();
+    let personalityType = "Analytical Strategist";
+    let analysisText = "You show strong qualities of systematic deduction and analytical thinking, thriving in technical environments where structured thinking translates to robust outcomes.";
 
-      const parsed = robustParseJson(aiRes.text);
-      if (parsed.personalityType) personalityType = parsed.personalityType;
-      if (parsed.analysisText) analysisText = parsed.analysisText;
-    } catch (err) {
-      console.error("Gemini failed, using highly realistic scoring engine fallback.", err);
+    if (ai) {
+      try {
+        const prompt = `Evaluate answers to this career assessment: ${JSON.stringify(answers)}.
+        The user profile is: Name: ${user.name}, User Type: ${user.userType}, Current Skills: ${(user.profile?.skills || []).join(", ") || "None"}.
+        Please analyze the user's career personality type (e.g., 'Tech-Innovator', 'Analytical Strategist', 'Creative Champion', or 'Social Catalyst'), interest levels (analytical, creative, social, technical, managerial out of 100), and write a 2-paragraph inspiring analysis on their optimal workplace environment.
+        Respond ONLY in valid, parseable JSON of this shape:
+        {
+          "personalityType": "Your determined archetype string",
+          "analysisText": "The 2-paragraph analysis text"
+        }`;
+
+        const aiRes = await callGeminiWithRetry({
+          model: "gemini-3.5-flash",
+          contents: prompt,
+          config: {
+            responseMimeType: "application/json",
+          },
+        });
+
+        const parsed = robustParseJson(aiRes.text);
+        if (parsed.personalityType) personalityType = parsed.personalityType;
+        if (parsed.analysisText) analysisText = parsed.analysisText;
+      } catch (err: any) {
+        console.warn("Gemini personality analysis failed, using realistic scoring engine fallback:", err?.message || err);
+      }
     }
+
+    // Determine a default archetype based on highest score if AI fallback was triggered
+    if (personalityType === "Analytical Strategist" && creative > technical && creative > social) {
+      personalityType = "Creative Visionary";
+      analysisText = "Your responses highlight an open-minded aptitude for designing novel solutions and expressing artistic or aesthetic flair in digital engineering and layout designs.";
+    } else if (social > technical && social > analytical) {
+      personalityType = "People-Centric Specialist";
+      analysisText = "You derive energy and inspiration from direct communication, team syncs, and mentorship, aiming to organize programs that cultivate collective alignment.";
+    }
+
+    const prevAssessment = fileDb.getAssessment(userId);
+    const assessment: Assessment & { questions?: any[] } = {
+      userId,
+      answers,
+      completed: true,
+      score: Math.round((aptitudeScore * 0.4) + (technical * 0.6)),
+      aptitudeScore,
+      interestsScore,
+      personalityType,
+      analysisText,
+      completedAt: new Date().toISOString(),
+    };
+    if (prevAssessment && 'questions' in prevAssessment) {
+      assessment.questions = (prevAssessment as any).questions;
+    }
+
+    fileDb.saveAssessment(userId, assessment);
+    res.json(assessment);
+  } catch (err: any) {
+    console.error("Submit assessment error:", err);
+    res.status(500).json({ error: "Failed to submit assessment" });
   }
-
-  // Determine a default archetype based on highest score if AI fallback was triggered
-  if (personalityType === "Analytical Strategist" && creative > technical && creative > social) {
-    personalityType = "Creative Visionary";
-    analysisText = "Your responses highlight an open-minded aptitude for designing novel solutions and expressing artistic or aesthetic flair in digital engineering and layout designs.";
-  } else if (social > technical && social > analytical) {
-    personalityType = "People-Centric Specialist";
-    analysisText = "You derive energy and inspiration from direct communication, team syncs, and mentorship, aiming to organize programs that cultivate collective alignment.";
-  }
-
-  const assessment: Assessment = {
-    userId,
-    answers,
-    completed: true,
-    score: Math.round((aptitudeScore * 0.4) + (technical * 0.6)),
-    aptitudeScore,
-    interestsScore,
-    personalityType,
-    analysisText,
-    completedAt: new Date().toISOString(),
-  };
-
-  fileDb.saveAssessment(userId, assessment);
-  res.json(assessment);
 });
 
 // 5. Multi-Agent Recommendations Module (A-003, A-008: Recommendation & Orchestration)
@@ -336,7 +403,7 @@ app.post("/api/agent/recommendations/:userId", async (req, res) => {
       confidenceScore: 0.92,
       matchPercentage: 92,
       justification: "Your strong technical skills, combined with a creative design aptitude and solid critical execution scores, map perfectly onto full-stack application architecting.",
-      matchedSkills: user.profile.skills.slice(0, 3).concat(["Vite", "JSON Data Modeling"]),
+      matchedSkills: (user.profile?.skills || []).slice(0, 3).concat(["Vite", "JSON Data Modeling"]),
       missingSkills: ["Tailwind CSS v4", "Docker Containers", "PostgreSQL", "GoogleGenAI SDK"],
       demandLevel: "High",
       salaryRange: "$95,000 - $145,000",
@@ -346,7 +413,7 @@ app.post("/api/agent/recommendations/:userId", async (req, res) => {
       confidenceScore: 0.85,
       matchPercentage: 85,
       justification: "Your stated interest in AI Orchestration combined with analytical thinking matches the urgent global need for developers capable of wiring up LLMs securely.",
-      matchedSkills: ["Express", "System Orchestration"].filter((s) => user.profile.skills.includes(s)),
+      matchedSkills: ["Express", "System Orchestration"].filter((s) => (user.profile?.skills || []).includes(s)),
       missingSkills: ["Gemini API Function Calling", "Prompt Engineering", "Vector Embeddings", "RAG Pipeline Tuning"],
       demandLevel: "High",
       salaryRange: "$110,000 - $175,000",
@@ -356,7 +423,7 @@ app.post("/api/agent/recommendations/:userId", async (req, res) => {
       confidenceScore: 0.78,
       matchPercentage: 78,
       justification: "Your background in Server Administration and security certifications indicate a robust readiness to design auto-scaling container configurations.",
-      matchedSkills: user.profile.skills.filter((s) => ["Docker", "Server Administration"].includes(s)),
+      matchedSkills: (user.profile?.skills || []).filter((s) => ["Docker", "Server Administration"].includes(s)),
       missingSkills: ["GitHub Actions", "Kubernetes Clustering", "Redis Caching", "Nginx Proxies"],
       demandLevel: "Medium",
       salaryRange: "$105,000 - $155,000",
@@ -400,7 +467,7 @@ app.post("/api/agent/recommendations/:userId", async (req, res) => {
         ]
       }`;
 
-      const aiRes = await ai.models.generateContent({
+      const aiRes = await callGeminiWithRetry({
         model: "gemini-3.5-flash",
         contents: prompt,
         config: { responseMimeType: "application/json" },
@@ -410,8 +477,8 @@ app.post("/api/agent/recommendations/:userId", async (req, res) => {
       if (parsed.recommendations && Array.isArray(parsed.recommendations)) {
         recommendations = parsed.recommendations;
       }
-    } catch (err) {
-      console.error("Gemini failed recommendations, reverting to high-fidelity localized seed structure.", err);
+    } catch (err: any) {
+      console.warn("Gemini recommendations failed, reverting to localized seed structure:", err?.message || err);
     }
   }
 
@@ -496,7 +563,7 @@ app.post("/api/agent/roadmap/:userId", async (req, res) => {
         ]
       }`;
 
-      const aiRes = await ai.models.generateContent({
+      const aiRes = await callGeminiWithRetry({
         model: "gemini-3.5-flash",
         contents: prompt,
         config: { responseMimeType: "application/json" },
@@ -510,8 +577,8 @@ app.post("/api/agent/roadmap/:userId", async (req, res) => {
           resources: (milestone.resources || []).map((r: any) => ({ ...r, completed: false })),
         }));
       }
-    } catch (err) {
-      console.error("Gemini failed key roadmap creation, falling back to 12-week simulated track", err);
+    } catch (err: any) {
+      console.warn("Gemini key roadmap creation failed, falling back to 12-week simulated track:", err?.message || err);
       // Seed a robust 6 week block instead of 4
       roadmap.milestones = Array.from({ length: 6 }).map((_, idx) => ({
         week: idx + 1,
@@ -604,7 +671,7 @@ app.get("/api/agent/job-market/:role", async (req, res) => {
         "hotSkills": ["Skill Alpha", "Skill Beta"]
       }`;
 
-      const aiRes = await ai.models.generateContent({
+      const aiRes = await callGeminiWithRetry({
         model: "gemini-3.5-flash",
         contents: prompt,
         config: { responseMimeType: "application/json" },
@@ -614,8 +681,8 @@ app.get("/api/agent/job-market/:role", async (req, res) => {
       if (parsed.demandRate) {
         insight = { ...insight, ...parsed, role: roleName };
       }
-    } catch (err) {
-      console.error("Gemini job insights analysis error, defaulting to seed data", err);
+    } catch (err: any) {
+      console.warn("Gemini job insights analysis failed, defaulting to seed data:", err?.message || err);
     }
   }
 
@@ -679,7 +746,7 @@ app.post("/api/agent/interview/initiate/:userId", async (req, res) => {
         ]
       }`;
 
-      const aiRes = await ai.models.generateContent({
+      const aiRes = await callGeminiWithRetry({
         model: "gemini-3.5-flash",
         contents: prompt,
         config: { responseMimeType: "application/json" },
@@ -689,8 +756,8 @@ app.post("/api/agent/interview/initiate/:userId", async (req, res) => {
       if (parsed.questions && Array.isArray(parsed.questions)) {
         questions = parsed.questions;
       }
-    } catch (err) {
-      console.error("Gemini failed interview question pool generation, using default high-standard seed pool", err);
+    } catch (err: any) {
+      console.warn("Gemini interview question pool generation failed, using default high-standard seed pool:", err?.message || err);
     }
   }
 
@@ -747,7 +814,7 @@ app.post("/api/agent/interview/:userId/submit-answer", async (req, res) => {
         "feedback": "Your evaluation feedback review string"
       }`;
 
-      const aiRes = await ai.models.generateContent({
+      const aiRes = await callGeminiWithRetry({
         model: "gemini-3.5-flash",
         contents: prompt,
         config: { responseMimeType: "application/json" },
@@ -756,8 +823,8 @@ app.post("/api/agent/interview/:userId/submit-answer", async (req, res) => {
       const parsed = robustParseJson(aiRes.text);
       if (parsed.score !== undefined) score = parsed.score;
       if (parsed.feedback) feedback = parsed.feedback;
-    } catch (err) {
-      console.error("Gemini answer evaluation failed, applying default feedback mechanics", err);
+    } catch (err: any) {
+      console.warn("Gemini answer evaluation failed, applying default feedback mechanics:", err?.message || err);
     }
   }
 
@@ -808,7 +875,7 @@ app.post("/api/agent/resume-optimize/:userId", async (req, res) => {
         "suggestions": ["Suggestion 1 text", "Suggestion 2 text", "Suggestion 3 text"]
       }`;
 
-      const aiRes = await ai.models.generateContent({
+      const aiRes = await callGeminiWithRetry({
         model: "gemini-3.5-flash",
         contents: prompt,
         config: { responseMimeType: "application/json" },
@@ -818,8 +885,8 @@ app.post("/api/agent/resume-optimize/:userId", async (req, res) => {
       if (parsed.compatibilityScore !== undefined) {
         optimization = parsed;
       }
-    } catch (err) {
-      console.error("Gemini failed resume optimization, providing high-standard fallback audit", err);
+    } catch (err: any) {
+      console.warn("Gemini resume optimization failed, providing high-standard fallback audit:", err?.message || err);
     }
   }
 
@@ -869,7 +936,7 @@ Shall we practice a mock question?`;
       parts: [{ text: msg.text || "" }]
     }));
 
-    const aiRes = await ai.models.generateContent({
+    const aiRes = await callGeminiWithRetry({
       model: selectedModel,
       contents: formattedContents,
       config: {
@@ -880,8 +947,29 @@ Shall we practice a mock question?`;
     const replyText = aiRes.text || "I was unable to assemble a reply at this time.";
     res.json({ text: replyText });
   } catch (err: any) {
-    console.error("Gemini chatbot error:", err);
-    res.status(500).json({ error: err.message || "Internal server error during chat compilation" });
+    console.warn("Gemini chatbot failed after retries, applying helpful advisory fallback:", err?.message || err);
+    
+    // Generates a helpful simulation fallback instead of throwing 500 error!
+    const lastUserMsgObj = [...messages].reverse().find(m => m.role === "user");
+    const lastUserMsg = lastUserMsgObj ? lastUserMsgObj.text : "";
+    
+    let simReply = "";
+    if (systemPrompt.includes("Senior Tech") || systemPrompt.includes("Technical") || systemPrompt.includes("Architect")) {
+      simReply = `As your Technical Mentor, here is some insight regarding: "${lastUserMsg}"\n\nTransitioning into high-level engineering roles requires mastery of both software craft and system design. Focus on solidifying design patterns, distributed databases (like PostgreSQL, Spanner), and modern containers. What specific language or stack are you looking to optimize?\n\n*(Note: The live AI model is temporarily experiencing high demand, so I am answering with system-cached advice.)*`;
+    } else if (systemPrompt.includes("recruiter") || systemPrompt.includes("Resume") || systemPrompt.includes("Portfolio") || systemPrompt.includes("Audit")) {
+      simReply = `As your Resume Coach, looking at your query "${lastUserMsg}", I recommend focusing on impact-driven bullet points. Use action verbs (e.g., 'Directed', 'Orchestrated', 'Optimized') and quantify results (e.g., 'reduced API latency by 45%'). Let me know what section of your portfolio you'd like to draft first!\n\n*(Note: The live AI model is temporarily experiencing high demand, so I am answering with system-cached advice.)*`;
+    } else if (systemPrompt.includes("STAR method") || systemPrompt.includes("Behavioral") || systemPrompt.includes("Interview") || systemPrompt.includes("Prep")) {
+      simReply = `Let's rehearse. For behavioral questions like "${lastUserMsg}", use the STAR method:
+- **Situation**: Context of the problem.
+- **Task**: The specific challenge you faced.
+- **Action**: What *you* did to resolve it.
+- **Result**: The quantifiable positive outcome.
+Shall we practice a mock question?\n\n*(Note: The live AI model is temporarily experiencing high demand, so I am answering with system-cached advice.)*`;
+    } else {
+      simReply = `Hello! I am your Multi-Agent Career Coach. Regarding: "${lastUserMsg}", I recommend starting with your professional portfolio, taking our skills assessment, and establishing your weekly roadmap. How can I guide your journey today?\n\n*(Note: The live AI model is temporarily experiencing high demand, so I am answering with system-cached advice.)*`;
+    }
+    
+    res.json({ text: simReply });
   }
 });
 

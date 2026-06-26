@@ -80,6 +80,10 @@ export default function App() {
         const meData = await meRes.json();
         setUser(meData);
         localStorage.setItem("macgs_user", JSON.stringify(meData));
+      } else if (meRes.status === 404) {
+        setUser(null);
+        localStorage.removeItem("macgs_user");
+        return;
       }
 
       // Sync assessment

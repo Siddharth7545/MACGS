@@ -1,0 +1,620 @@
+{
+  "users": [
+    {
+      "id": "admin",
+      "name": "System Admin",
+      "email": "admin@macgs.edu",
+      "passwordHash": "admin123",
+      "userType": "admin",
+      "status": "active",
+      "registeredAt": "2026-06-25T14:53:32.735Z",
+      "lastLogin": "2026-06-25T14:53:32.735Z",
+      "profile": {
+        "currentRole": "System Admin",
+        "targetRole": "Cloud Platform Manager",
+        "skills": [
+          "Security Architectures",
+          "Server Administration",
+          "Docker",
+          "Express"
+        ],
+        "interests": [
+          "System Orchestration",
+          "AI Integration",
+          "Performance Security"
+        ],
+        "experience": [
+          "3 years managing college labs"
+        ],
+        "education": [
+          "B.E. Computer Science"
+        ],
+        "certifications": [
+          "CompTIA Security+"
+        ]
+      }
+    },
+    {
+      "id": "u_1782401114780",
+      "name": "Test User",
+      "email": "test@test.com",
+      "passwordHash": "password123",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-25T15:25:14.780Z",
+      "lastLogin": "2026-06-25T15:25:14.780Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782401208283",
+      "name": "T2",
+      "email": "t2@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-25T15:26:48.283Z",
+      "lastLogin": "2026-06-25T15:26:48.283Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782402391713",
+      "name": "T2",
+      "email": "t3@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-25T15:46:31.713Z",
+      "lastLogin": "2026-06-25T15:46:31.713Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782403245705",
+      "name": "T4",
+      "email": "t4@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-25T16:00:45.705Z",
+      "lastLogin": "2026-06-25T16:00:45.705Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782403306733",
+      "name": "T5",
+      "email": "t5@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-25T16:01:46.733Z",
+      "lastLogin": "2026-06-25T16:01:46.733Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782404296460",
+      "name": "T6",
+      "email": "t6@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-25T16:18:16.460Z",
+      "lastLogin": "2026-06-25T16:18:16.460Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782404717771",
+      "name": "T7",
+      "email": "t7@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-25T16:25:17.772Z",
+      "lastLogin": "2026-06-25T16:25:17.772Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782405206625",
+      "name": "T8",
+      "email": "t8@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-25T16:33:26.625Z",
+      "lastLogin": "2026-06-25T16:33:26.625Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782405360647",
+      "name": "T9",
+      "email": "t9@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-25T16:36:00.647Z",
+      "lastLogin": "2026-06-25T16:36:00.647Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782405516586",
+      "name": "T10",
+      "email": "t10@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-25T16:38:36.586Z",
+      "lastLogin": "2026-06-25T16:38:36.586Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782405709196",
+      "name": "T12",
+      "email": "t12@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-25T16:41:49.196Z",
+      "lastLogin": "2026-06-25T16:41:49.196Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782447037918",
+      "name": "T13",
+      "email": "t13@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-26T04:10:37.918Z",
+      "lastLogin": "2026-06-26T04:10:37.918Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782447255178",
+      "name": "Sid",
+      "email": "siddharthsingh7545@gmail.com",
+      "passwordHash": "Sid",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-26T04:14:15.178Z",
+      "lastLogin": "2026-06-26T04:14:15.178Z",
+      "profile": {
+        "currentRole": "Computer Science",
+        "targetRole": "Frontend Engineer",
+        "skills": [
+          "Python",
+          "Java"
+        ],
+        "interests": [
+          "Web Development"
+        ],
+        "experience": [
+          "Academic Training / Classroom Labs"
+        ],
+        "education": [
+          "CBSE (Expected Class of 2027)"
+        ],
+        "certifications": []
+      },
+      "profileAnalyzed": true
+    },
+    {
+      "id": "u_1782447538856",
+      "name": "T14",
+      "email": "t14@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-26T04:18:58.856Z",
+      "lastLogin": "2026-06-26T04:18:58.856Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782448679481",
+      "name": "T15",
+      "email": "t15@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-26T04:37:59.481Z",
+      "lastLogin": "2026-06-26T04:37:59.481Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    }
+  ],
+  "assessments": {
+    "u_1782356289534": {
+      "userId": "u_1782356289534",
+      "answers": {},
+      "completed": false,
+      "score": 0,
+      "aptitudeScore": 0,
+      "interestsScore": {
+        "analytical": 0,
+        "creative": 0,
+        "social": 0,
+        "technical": 0,
+        "managerial": 0
+      },
+      "personalityType": "Pending Completion"
+    },
+    "u_1782401114780": {
+      "userId": "u_1782401114780",
+      "answers": {
+        "apt_1": "correct"
+      },
+      "completed": true,
+      "score": 20,
+      "aptitudeScore": 50,
+      "interestsScore": {
+        "analytical": 20,
+        "creative": 15,
+        "social": 10,
+        "technical": 25,
+        "managerial": 20
+      },
+      "personalityType": "Analytical Strategist",
+      "analysisText": "You show strong qualities of systematic deduction and analytical thinking, thriving in technical environments where structured thinking translates to robust outcomes.",
+      "completedAt": "2026-06-25T15:25:15.702Z"
+    },
+    "u_1782401208283": {
+      "userId": "u_1782401208283",
+      "answers": {
+        "apt_1": "correct"
+      },
+      "completed": true,
+      "score": 20,
+      "aptitudeScore": 50,
+      "interestsScore": {
+        "analytical": 20,
+        "creative": 15,
+        "social": 10,
+        "technical": 25,
+        "managerial": 20
+      },
+      "personalityType": "Analytical Strategist",
+      "analysisText": "You show strong qualities of systematic deduction and analytical thinking, thriving in technical environments where structured thinking translates to robust outcomes.",
+      "completedAt": "2026-06-25T15:26:49.449Z"
+    },
+    "u_1782402391713": {
+      "userId": "u_1782402391713",
+      "answers": {
+        "apt_1": "correct"
+      },
+      "completed": true,
+      "score": 20,
+      "aptitudeScore": 50,
+      "interestsScore": {
+        "analytical": 20,
+        "creative": 15,
+        "social": 10,
+        "technical": 25,
+        "managerial": 20
+      },
+      "personalityType": "Analytical Strategist",
+      "analysisText": "You show strong qualities of systematic deduction and analytical thinking, thriving in technical environments where structured thinking translates to robust outcomes.",
+      "completedAt": "2026-06-25T15:46:32.280Z"
+    },
+    "u_1782403245705": {
+      "userId": "u_1782403245705",
+      "answers": {
+        "apt_1": "correct"
+      },
+      "completed": true,
+      "score": 20,
+      "aptitudeScore": 50,
+      "interestsScore": {
+        "analytical": 20,
+        "creative": 15,
+        "social": 10,
+        "technical": 25,
+        "managerial": 20
+      },
+      "personalityType": "Analytical Strategist",
+      "analysisText": "You show strong qualities of systematic deduction and analytical thinking, thriving in technical environments where structured thinking translates to robust outcomes.",
+      "completedAt": "2026-06-25T16:01:03.753Z"
+    },
+    "u_1782404296460": {
+      "userId": "u_1782404296460",
+      "answers": {
+        "apt_1": "correct"
+      },
+      "completed": true,
+      "score": 20,
+      "aptitudeScore": 50,
+      "interestsScore": {
+        "analytical": 20,
+        "creative": 15,
+        "social": 10,
+        "technical": 25,
+        "managerial": 20
+      },
+      "personalityType": "Analytical Strategist",
+      "analysisText": "You show strong qualities of systematic deduction and analytical thinking, thriving in technical environments where structured thinking translates to robust outcomes.",
+      "completedAt": "2026-06-25T16:18:21.290Z"
+    },
+    "u_1782404717771": {
+      "userId": "u_1782404717771",
+      "answers": {
+        "apt_1": "correct"
+      },
+      "completed": true,
+      "score": 20,
+      "aptitudeScore": 50,
+      "interestsScore": {
+        "analytical": 20,
+        "creative": 15,
+        "social": 10,
+        "technical": 25,
+        "managerial": 20
+      },
+      "personalityType": "Analytical Strategist",
+      "analysisText": "You show strong qualities of systematic deduction and analytical thinking, thriving in technical environments where structured thinking translates to robust outcomes.",
+      "completedAt": "2026-06-25T16:25:49.876Z"
+    },
+    "u_1782405206625": {
+      "userId": "u_1782405206625",
+      "answers": {
+        "apt_1": "correct",
+        "apt_2": "correct",
+        "int_1": "B",
+        "per_1": "B"
+      },
+      "completed": true,
+      "score": 28,
+      "aptitudeScore": 70,
+      "interestsScore": {
+        "analytical": 55,
+        "creative": 15,
+        "social": 10,
+        "technical": 25,
+        "managerial": 20
+      },
+      "personalityType": "Analytical Strategist",
+      "analysisText": "You show strong qualities of systematic deduction and analytical thinking, thriving in technical environments where structured thinking translates to robust outcomes.",
+      "completedAt": "2026-06-25T16:33:30.294Z"
+    },
+    "u_1782405360647": {
+      "userId": "u_1782405360647",
+      "answers": {
+        "apt_1": "correct",
+        "apt_2": "correct",
+        "int_1": "B",
+        "per_1": "B"
+      },
+      "completed": true,
+      "score": 28,
+      "aptitudeScore": 70,
+      "interestsScore": {
+        "analytical": 55,
+        "creative": 15,
+        "social": 10,
+        "technical": 25,
+        "managerial": 20
+      },
+      "personalityType": "Analytical Strategist",
+      "analysisText": "You show strong qualities of systematic deduction and analytical thinking, thriving in technical environments where structured thinking translates to robust outcomes.",
+      "completedAt": "2026-06-25T16:36:04.018Z"
+    },
+    "u_1782405709196": {
+      "userId": "u_1782405709196",
+      "answers": {
+        "apt_1": "correct",
+        "apt_2": "correct",
+        "int_1": "B",
+        "per_1": "B"
+      },
+      "completed": true,
+      "score": 28,
+      "aptitudeScore": 70,
+      "interestsScore": {
+        "analytical": 55,
+        "creative": 15,
+        "social": 10,
+        "technical": 25,
+        "managerial": 20
+      },
+      "personalityType": "Analytical Strategist",
+      "analysisText": "As an Analytical Strategist, you possess a natural aptitude for logical problem-solving and systematic thinking. Your consistent performance in aptitude assessments highlights a capacity for precision and efficiency that will serve as a foundational pillar in your future career. Since you are currently in the early stages of your professional development, this strong analytical core provides you with the versatility to excel in data-driven industries or complex organizational roles where clear, rational decision-making is highly valued.\n\nYour optimal workplace environment is one that champions autonomy, provides access to advanced resources, and rewards high-level objective reasoning. You will thrive in structured settings that encourage independent research and the development of long-term strategies rather than reactive, short-term tasks. Surrounding yourself with mentors who prioritize evidence-based results will allow you to transform your innate analytical potential into a powerful career trajectory, helping you build both a reputation for competence and a sustainable, fulfilling professional path.",
+      "completedAt": "2026-06-25T16:41:50.871Z"
+    },
+    "u_1782447037918": {
+      "userId": "u_1782447037918",
+      "answers": {
+        "apt_1": "correct"
+      },
+      "completed": true,
+      "score": 20,
+      "aptitudeScore": 50,
+      "interestsScore": {
+        "analytical": 20,
+        "creative": 15,
+        "social": 10,
+        "technical": 25,
+        "managerial": 20
+      },
+      "personalityType": "Analytical Strategist",
+      "analysisText": "Your performance on this initial assessment indicates a sharp aptitude for systematic thinking and objective problem-solving. As an Analytical Strategist, you possess a natural inclination toward identifying logical structures and precision-based solutions, which makes you a valuable asset in environments that prioritize data-driven decision-making and efficiency. Your potential thrives where complex challenges are met with structured frameworks, allowing you to sharpen your skills while navigating the intricacies of technical or operational landscapes.\n\nIn your optimal workplace, you will flourish within an environment that values intellectual rigor and provides clear pathways for professional growth. You are best suited for settings that offer mentorship and allow you to transition from theoretical knowledge to practical, high-impact implementation. By surrounding yourself with collaborative teams that encourage analytical inquiry, you will not only build your foundational skill set rapidly but also cultivate a career path that bridges the gap between sophisticated strategy and real-world execution.",
+      "completedAt": "2026-06-26T04:10:39.394Z"
+    },
+    "u_1782447255178": {
+      "userId": "u_1782447255178",
+      "answers": {
+        "apt_1": "correct",
+        "apt_2": "correct",
+        "apt_3": "incorrect_2",
+        "apt_4": "incorrect_2",
+        "int_1": "C",
+        "int_2": "C",
+        "int_3": "D",
+        "per_1": "C",
+        "per_2": "B",
+        "per_3": "B"
+      },
+      "completed": true,
+      "score": 43,
+      "aptitudeScore": 70,
+      "interestsScore": {
+        "analytical": 40,
+        "creative": 15,
+        "social": 70,
+        "technical": 50,
+        "managerial": 20
+      },
+      "personalityType": "People-Centric Specialist",
+      "analysisText": "You derive energy and inspiration from direct communication, team syncs, and mentorship, aiming to organize programs that cultivate collective alignment.",
+      "completedAt": "2026-06-26T04:16:36.499Z"
+    },
+    "u_1782447538856": {
+      "userId": "u_1782447538856",
+      "answers": {
+        "apt_1": "correct"
+      },
+      "completed": true,
+      "score": 20,
+      "aptitudeScore": 50,
+      "interestsScore": {
+        "analytical": 20,
+        "creative": 15,
+        "social": 10,
+        "technical": 25,
+        "managerial": 20
+      },
+      "personalityType": "Analytical Strategist",
+      "analysisText": "You show strong qualities of systematic deduction and analytical thinking, thriving in technical environments where structured thinking translates to robust outcomes.",
+      "completedAt": "2026-06-26T04:19:02.492Z"
+    },
+    "u_1782448679481": {
+      "userId": "u_1782448679481",
+      "answers": {},
+      "completed": false,
+      "score": 0,
+      "aptitudeScore": 0,
+      "interestsScore": {
+        "analytical": 0,
+        "creative": 0,
+        "social": 0,
+        "technical": 0,
+        "managerial": 0
+      },
+      "personalityType": "Pending Completion"
+    }
+  },
+  "recommendations": {},
+  "roadmaps": {},
+  "interviews": {},
+  "jobInsights": {},
+  "systemConfig": {
+    "platformName": "CAREER-MATE MACGS",
+    "maintenanceMode": false,
+    "defaultModel": "gemini-3.5-flash"
+  }
+}

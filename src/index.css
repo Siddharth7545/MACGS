@@ -38,11 +38,14 @@ body {
 }
 
 /* High contrast Text adaptation in Dark Mode */
+.dark .text-slate-950,
+.dark .text-gray-950,
 .dark .text-slate-900, 
 .dark .text-gray-900,
 .dark .text-slate-800,
-.dark .text-gray-800 {
-  color: #f8fafc !important; /* Slate 50 */
+.dark .text-gray-800,
+.dark .text-black {
+  color: #ffffff !important;
 }
 
 .dark .text-slate-700, 

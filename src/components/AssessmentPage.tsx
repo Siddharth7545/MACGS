@@ -189,7 +189,8 @@ export default function AssessmentPage({ user, assessment, onAssessmentCompleted
       });
 
       if (!res.ok) {
-        throw new Error("Assessment Agent returned a faulty status");
+        const errorData = await res.json().catch(() => null);
+        throw new Error(errorData?.error || "Assessment Agent returned a faulty status");
       }
 
       const updatedAssessment = await res.json();
@@ -281,13 +282,23 @@ export default function AssessmentPage({ user, assessment, onAssessmentCompleted
 
           <div className="flex justify-between items-center pt-8 border-t border-gray-100">
             <button
-              onClick={() => {
+              onClick={async () => {
                 if (window.confirm("Retake the assessment? Previous scores will be archived temporarily on server.")) {
                   setAnswers({});
                   setCurrentIdx(0);
-                  // Trigger state clear in parent or local bypass
-                  const nextAss = { ...assessment, completed: false };
-                  onAssessmentCompleted(nextAss);
+                  try {
+                    const res = await fetch(`/api/assessment/${user.id}/reset`, { method: "POST" });
+                    if (res.ok) {
+                      const nextAss = await res.json();
+                      onAssessmentCompleted(nextAss);
+                    } else {
+                      const nextAss = { ...assessment, completed: false };
+                      onAssessmentCompleted(nextAss);
+                    }
+                  } catch (e) {
+                    const nextAss = { ...assessment, completed: false };
+                    onAssessmentCompleted(nextAss);
+                  }
                 }
               }}
               className="text-xs font-semibold text-rose-600 hover:text-rose-700 cursor-pointer"

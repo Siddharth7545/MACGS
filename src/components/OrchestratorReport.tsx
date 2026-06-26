@@ -70,7 +70,7 @@ export default function OrchestratorReport({ user }: OrchestratorReportProps) {
             <div className="absolute top-0 right-0 p-8 flex flex-col items-center">
               <div className="border-4 border-emerald-500/30 text-emerald-600 rounded-full w-20 h-20 flex flex-col items-center justify-center font-bold tracking-widest text-[9px] font-mono transform rotate-12 bg-white/80 select-none">
                 <span className="block leading-none">VERIFIED</span>
-                <span className="block text-[7px] text-gray-450 mt-1">{report.systemCertificateId.split("-")[2]}</span>
+                <span className="block text-[7px] text-gray-450 mt-1">{(report.systemCertificateId || "").split("-")[2] || "SECURE"}</span>
               </div>
             </div>
 
@@ -79,7 +79,7 @@ export default function OrchestratorReport({ user }: OrchestratorReportProps) {
               <h2 className="text-xl font-extrabold text-slate-950 font-sans tracking-tight">MULTI-AGENT CAREER GUIDANCE DOSSIER</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 text-xs text-gray-500 mt-3 gap-y-1">
                 <div>Candidate Profile: <b className="text-slate-800">{report.userName}</b></div>
-                <div>Synapse Token: <b className="text-slate-800 font-mono text-[10px]">{report.systemCertificateId}</b></div>
+                <div>Synapse Token: <b className="text-slate-800 font-mono text-[10px]">{report.systemCertificateId || "MACGS-CERT-NONE"}</b></div>
                 <div>Account Classification: <b className="text-slate-800 capitalize">{report.userType}</b></div>
                 <div>Compilation Date: <b className="text-slate-800">{new Date(report.compiledAt).toLocaleDateString()}</b></div>
               </div>

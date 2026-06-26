@@ -36,76 +36,33 @@ interface CoachRole {
 
 const COACH_ROLES: CoachRole[] = [
   {
-    id: "mentor",
-    title: "Senior Tech Architect",
-    description: "Cloud systems design, databases, architectural trade-offs, and microservices.",
-    icon: Terminal,
+    id: "unified",
+    title: "Unified AI Career Coach & Tech Mentor",
+    description: "Your all-in-one assistant for technical cloud systems architecture design, resume & portfolio optimizations, mock behavioral/technical interviews, and soft-skills prep.",
+    icon: Bot,
     color: "indigo",
-    badge: "System Architect",
-    systemInstruction: "You are an elite Senior Tech Architect and seasoned engineering mentor. Give structural architectural recommendations, robust schema advices, and detailed cloud-native blueprints. Be highly technical, structure key metrics, and provide pseudo-code or architecture descriptions when helpful.",
+    badge: "All-in-One Advisor",
+    systemInstruction: "You are an elite, comprehensive AI Career Coach, Senior Tech Architect, resume editor, and interview preparer. You possess deep expertise in: 1) Cloud system design, robust database schemas, and microservices; 2) Directing resume-auditing, portfolio framing, and metric-driven career storytelling; 3) Mock behavioral & technical interviews using the STAR format, leadership scenarios, and salary negotiations. Tailor your responses precisely based on what the user asks, whether they need systems architecture guidance, portfolio/resume polishing, or mock interview preparation.",
     starters: [
-      "Explain the trade-offs of using PostgreSQL (Cloud SQL) vs. DynamoDB for high-throughput messaging.",
-      "How should I structure my database schema to track complex user roadmap milestones?",
-      "Can you give some solid strategies to reduce server latency with intelligent CDN and cache configurations?"
-    ]
-  },
-  {
-    id: "resume",
-    title: "Resume & Portfolio Coach",
-    description: "Keywords optimization, metrics-targeting, clean summaries, and HR impact drafting.",
-    icon: FileCheck,
-    color: "emerald",
-    badge: "Portfolio Strategist",
-    systemInstruction: "You are an HR Executive Director and elite resume-auditing consultant. Guide the user to rephrase normal duties into high-impact metric-driven results using active verbs. Recommend portfolio frameworks, tech stacks showcase ideas, and professional summary polish.",
-    starters: [
-      "Rephrase this bullet: 'I was responsible for maintaining legacy database systems and writing SQL.'",
-      "What are five powerful, modern action verbs to showcase leader-driven engineering impact?",
-      "How do I structure a robust portfolio section for an AI project to grab recruiters' attention?"
-    ]
-  },
-  {
-    id: "behavioral",
-    title: "Interview & Soft-Skills Prep",
-    description: "STAR method rehearsal, salary negotiation strategies, and high-impact verbal frameworks.",
-    icon: Sparkles,
-    color: "amber",
-    badge: "Negotiation Guide",
-    systemInstruction: "You are an Executive Leadership and behavioral interview preparer. Teach the user to structure their experiences using Situation, Task, Action, Result (STAR). Audit their mock questions, prompt with realistic tech management scenarios, and teach positive compensation negotiation steps.",
-    starters: [
-      "Let's practice! Ask me a challenging behavioral question about resolving major conflicts in cross-functional squads.",
-      "Explain how to structure a response for: 'What is your greatest technical oversight and what did you learn?'",
-      "What are the best verbal scripts to counter-propose a salary offer without sounding defensive?"
+      "Let's design a high-throughput database schema using Firestore or Cloud SQL.",
+      "Rephrase a bullet like 'I was responsible for database maintenance' into high-impact metric achievements.",
+      "Let's practice a STAR behavioral interview mock question for a leadership or tech role.",
+      "How do I structure my portfolio and projects section to impress recruiters?"
     ]
   }
 ];
 
 export default function ChatCoachPage() {
-  const [activeRoleId, setActiveRoleId] = useState<string>("mentor");
+  const [activeRoleId, setActiveRoleId] = useState<string>("unified");
   const [selectedModel, setSelectedModel] = useState<string>("gemini-3.5-flash");
   
   // Initialize dialogue with welcome text matching the chosen role
   const [chatHistory, setChatHistory] = useState<Record<string, ChatMessage[]>>({
-    mentor: [
+    unified: [
       {
-        id: "init-m",
+        id: "init-u",
         role: "assistant",
-        text: "Hi there! I am your Technical Architecture Mentor. Let's design scalable systems, review database schemas, or plan API boundaries. What stack are you hacking on today?",
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      }
-    ],
-    resume: [
-      {
-        id: "init-r",
-        role: "assistant",
-        text: "Greetings! I'm your Resume and Portfolio Coach. Let's replace generic 'responsible for' bullet points with quantified engineering triumphs. Copy in any summary or draft bullet to begin!",
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      }
-    ],
-    behavioral: [
-      {
-        id: "init-b",
-        role: "assistant",
-        text: "Welcome to behavioral prep. I will help you master the STAR method. Choose a topic or ask me to mock-interview you, and let's craft stellar, leader-caliber answers.",
+        text: "Hello! I am your Unified Career Coach & Tech Mentor. I can help you design scalable systems, optimize your resume/portfolio, practice mock interviews, and structure behavioral questions. How can we elevate your career today?",
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       }
     ]
@@ -211,14 +168,7 @@ export default function ChatCoachPage() {
     setErrorText("");
     setInputText("");
     setChatHistory(prev => {
-      let welcomeMsg = "";
-      if (activeRoleId === "mentor") {
-        welcomeMsg = "Hi there! I am your Technical Architecture Mentor. Let's design scalable systems, review database schemas, or plan API boundaries. What stack are you hacking on today?";
-      } else if (activeRoleId === "resume") {
-        welcomeMsg = "Greetings! I'm your Resume and Portfolio Coach. Let's replace generic 'responsible for' bullet points with quantified engineering triumphs. Copy in any summary or draft bullet to begin!";
-      } else {
-        welcomeMsg = "Welcome to behavioral prep. I will help you master the STAR method. Choose a topic or ask me to mock-interview you, and let's craft stellar, leader-caliber answers.";
-      }
+      const welcomeMsg = "Hello! I am your Unified Career Coach & Tech Mentor. I can help you design scalable systems, optimize your resume/portfolio, practice mock interviews, and structure behavioral questions. How can we elevate your career today?";
 
       return {
         ...prev,
@@ -273,45 +223,29 @@ export default function ChatCoachPage() {
         <div className="lg:col-span-4 space-y-4">
           <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 shadow-sm space-y-4">
             <h3 className="text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider font-mono">
-              Select Coach Persona
+              Unified Coach Persona
             </h3>
 
             <div className="space-y-2.5">
               {COACH_ROLES.map((role) => {
                 const Icon = role.icon;
-                const isSelected = activeRoleId === role.id;
                 
-                const activeBorder = isSelected 
-                  ? role.id === "mentor" ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-950 dark:text-indigo-100"
-                    : role.id === "resume" ? "border-emerald-500 bg-emerald-50/20 dark:bg-emerald-950/20 text-emerald-950 dark:text-emerald-100"
-                    : "border-amber-500 bg-amber-50/20 dark:bg-amber-950/20 text-amber-950 dark:text-amber-100"
-                  : "border-slate-100 dark:border-slate-800/60 hover:bg-slate-50 dark:hover:bg-slate-800/40 text-slate-700 dark:text-slate-300";
+                const activeBorder = "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-950 dark:text-indigo-100";
 
                 return (
-                  <button
+                  <div
                     key={role.id}
-                    onClick={() => setActiveRoleId(role.id)}
-                    className={`w-full text-left p-3 rounded-xl border transition-all duration-200 cursor-pointer flex items-start gap-3 relative overflow-hidden group ${activeBorder}`}
+                    className={`w-full text-left p-4 rounded-xl border flex items-start gap-3 relative overflow-hidden group ${activeBorder}`}
                   >
-                    <span className={`p-2 rounded-lg shrink-0 flex items-center justify-center ${
-                      isSelected
-                        ? role.id === "mentor" ? "bg-indigo-600 text-white"
-                          : role.id === "resume" ? "bg-emerald-600 text-white"
-                          : "bg-amber-600 text-white"
-                        : "bg-slate-100 dark:bg-slate-800 text-slate-500"
-                    }`}>
+                    <span className="p-2 rounded-lg shrink-0 flex items-center justify-center bg-indigo-600 text-white">
                       <Icon className="w-4 h-4" />
                     </span>
                     <div>
-                      <div className="flex items-center gap-1.5">
+                      <div className="flex items-center gap-1.5 flex-wrap">
                         <h4 className="font-bold text-xs uppercase tracking-wide">
                           {role.title}
                         </h4>
-                        <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded uppercase font-mono ${
-                          role.id === "mentor" ? "bg-indigo-100 dark:bg-indigo-950 text-indigo-800 dark:text-indigo-400"
-                            : role.id === "resume" ? "bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-400"
-                            : "bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-400"
-                        }`}>
+                        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded uppercase font-mono bg-indigo-100 dark:bg-indigo-950 text-indigo-800 dark:text-indigo-400">
                           {role.badge}
                         </span>
                       </div>
@@ -319,7 +253,7 @@ export default function ChatCoachPage() {
                         {role.description}
                       </p>
                     </div>
-                  </button>
+                  </div>
                 );
               })}
             </div>
@@ -327,10 +261,10 @@ export default function ChatCoachPage() {
 
           <div className="bg-slate-100 dark:bg-slate-900/40 border border-slate-200/60 dark:border-slate-800/65 rounded-2xl p-4 text-xs space-y-3">
             <h4 className="font-bold text-slate-700 dark:text-slate-350 flex items-center gap-1.5 font-sans">
-              <Award className="w-4 h-4 text-amber-500" /> Professional Guardrails
+              <Award className="w-4 h-4 text-amber-500" /> Premium Capabilities
             </h4>
             <p className="text-[11px] text-slate-500 dark:text-slate-405 leading-relaxed">
-              These conversation systems leverage memory streams. Changing personas will keep their respective sessions intact, so you can dynamically swap between resume edits and system architecture design without losing place.
+              This unified system combines our multi-turn semantic memory, tech architecture blueprints, metric-driven portfolio strategies, and STAR interview rehearsal into a single responsive agent.
             </p>
           </div>
         </div>
@@ -340,11 +274,7 @@ export default function ChatCoachPage() {
           {/* Active Coach Banner Header */}
           <div className="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-950/20 shrink-0">
             <div className="flex items-center gap-2.5">
-              <span className={`p-1.5 rounded-lg text-white font-bold flex items-center justify-center ${
-                activeRole.id === "mentor" ? "bg-indigo-600"
-                  : activeRole.id === "resume" ? "bg-emerald-600"
-                  : "bg-amber-600"
-              }`}>
+              <span className="p-1.5 rounded-lg text-white font-bold flex items-center justify-center bg-indigo-600">
                 {(() => {
                   const Icon = activeRole.icon;
                   return <Icon className="w-4 h-4" />;
