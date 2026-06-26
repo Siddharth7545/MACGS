@@ -282,23 +282,30 @@ export default function AssessmentPage({ user, assessment, onAssessmentCompleted
 
           <div className="flex justify-between items-center pt-8 border-t border-gray-100">
             <button
-              onClick={async () => {
-                if (window.confirm("Retake the assessment? Previous scores will be archived temporarily on server.")) {
-                  setAnswers({});
-                  setCurrentIdx(0);
-                  try {
-                    const res = await fetch(`/api/assessment/${user.id}/reset`, { method: "POST" });
-                    if (res.ok) {
-                      const nextAss = await res.json();
-                      onAssessmentCompleted(nextAss);
-                    } else {
-                      const nextAss = { ...assessment, completed: false };
-                      onAssessmentCompleted(nextAss);
-                    }
-                  } catch (e) {
+              onClick={async (e) => {
+                const btn = e.currentTarget;
+                if (btn.innerText === "Reset Assessment") {
+                  btn.innerText = "Click again to confirm reset";
+                  setTimeout(() => {
+                    if (btn) btn.innerText = "Reset Assessment";
+                  }, 3000);
+                  return;
+                }
+                
+                setAnswers({});
+                setCurrentIdx(0);
+                try {
+                  const res = await fetch(`/api/assessment/${user.id}/reset`, { method: "POST" });
+                  if (res.ok) {
+                    const nextAss = await res.json();
+                    onAssessmentCompleted(nextAss);
+                  } else {
                     const nextAss = { ...assessment, completed: false };
                     onAssessmentCompleted(nextAss);
                   }
+                } catch (e) {
+                  const nextAss = { ...assessment, completed: false };
+                  onAssessmentCompleted(nextAss);
                 }
               }}
               className="text-xs font-semibold text-rose-600 hover:text-rose-700 cursor-pointer"

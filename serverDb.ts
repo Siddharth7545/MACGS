@@ -49,7 +49,6 @@ export interface CareerRecommendation {
   matchedSkills: string[];
   missingSkills: string[];
   demandLevel: "High" | "Medium" | "Low";
-  salaryRange: string;
 }
 
 export interface SkillGap {

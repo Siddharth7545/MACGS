@@ -330,7 +330,7 @@ app.post("/api/assessment/:userId/submit", async (req, res) => {
         }`;
 
         const aiRes = await callGeminiWithRetry({
-          model: "gemini-3.5-flash",
+          model: "gemini-3.1-flash-lite",
           contents: prompt,
           config: {
             responseMimeType: "application/json",
@@ -406,7 +406,6 @@ app.post("/api/agent/recommendations/:userId", async (req, res) => {
       matchedSkills: (user.profile?.skills || []).slice(0, 3).concat(["Vite", "JSON Data Modeling"]),
       missingSkills: ["Tailwind CSS v4", "Docker Containers", "PostgreSQL", "GoogleGenAI SDK"],
       demandLevel: "High",
-      salaryRange: "$95,000 - $145,000",
     },
     {
       role: "AI Integration Solutions Engineer",
@@ -416,7 +415,6 @@ app.post("/api/agent/recommendations/:userId", async (req, res) => {
       matchedSkills: ["Express", "System Orchestration"].filter((s) => (user.profile?.skills || []).includes(s)),
       missingSkills: ["Gemini API Function Calling", "Prompt Engineering", "Vector Embeddings", "RAG Pipeline Tuning"],
       demandLevel: "High",
-      salaryRange: "$110,000 - $175,000",
     },
     {
       role: "DevOps & Cloud Administrator",
@@ -426,7 +424,6 @@ app.post("/api/agent/recommendations/:userId", async (req, res) => {
       matchedSkills: (user.profile?.skills || []).filter((s) => ["Docker", "Server Administration"].includes(s)),
       missingSkills: ["GitHub Actions", "Kubernetes Clustering", "Redis Caching", "Nginx Proxies"],
       demandLevel: "Medium",
-      salaryRange: "$105,000 - $155,000",
     },
   ];
 
@@ -449,7 +446,6 @@ app.post("/api/agent/recommendations/:userId", async (req, res) => {
       4. A specific array of matchedSkills (existing skills from their list that align).
       5. A specific array of missingSkills (skills they do NOT list but must gain).
       6. Market demandLevel ("High", "Medium", or "Low").
-      7. A standard annual salaryRange scale (e.g. "$90,000 - $130,000").
 
       Respond ONLY with a valid, parseable JSON payload of this exact shape:
       {
@@ -461,14 +457,13 @@ app.post("/api/agent/recommendations/:userId", async (req, res) => {
             "justification": "Detailed explanation string.",
             "matchedSkills": ["skill1", "skill2"],
             "missingSkills": ["skill3", "skill4"],
-            "demandLevel": "High",
-            "salaryRange": "$90,000 - $130,000"
+            "demandLevel": "High"
           }
         ]
       }`;
 
       const aiRes = await callGeminiWithRetry({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash-lite",
         contents: prompt,
         config: { responseMimeType: "application/json" },
       });
@@ -564,7 +559,7 @@ app.post("/api/agent/roadmap/:userId", async (req, res) => {
       }`;
 
       const aiRes = await callGeminiWithRetry({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash-lite",
         contents: prompt,
         config: { responseMimeType: "application/json" },
       });
@@ -672,7 +667,7 @@ app.get("/api/agent/job-market/:role", async (req, res) => {
       }`;
 
       const aiRes = await callGeminiWithRetry({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash-lite",
         contents: prompt,
         config: { responseMimeType: "application/json" },
       });
@@ -747,7 +742,7 @@ app.post("/api/agent/interview/initiate/:userId", async (req, res) => {
       }`;
 
       const aiRes = await callGeminiWithRetry({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash-lite",
         contents: prompt,
         config: { responseMimeType: "application/json" },
       });
@@ -815,7 +810,7 @@ app.post("/api/agent/interview/:userId/submit-answer", async (req, res) => {
       }`;
 
       const aiRes = await callGeminiWithRetry({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash-lite",
         contents: prompt,
         config: { responseMimeType: "application/json" },
       });
@@ -876,7 +871,7 @@ app.post("/api/agent/resume-optimize/:userId", async (req, res) => {
       }`;
 
       const aiRes = await callGeminiWithRetry({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash-lite",
         contents: prompt,
         config: { responseMimeType: "application/json" },
       });
@@ -901,7 +896,7 @@ app.post("/api/chat", async (req, res) => {
     return res.status(400).json({ error: "Messages array is required." });
   }
 
-  const selectedModel = model || "gemini-3.5-flash";
+  const selectedModel = model || "gemini-3.1-flash-lite";
   const systemPrompt = systemInstruction || "You are a helpful career advisor.";
   const ai = getGeminiClient();
 

@@ -220,10 +220,16 @@ export default function InterviewPage({ user, activeRoleTrack, onNavigate }: Int
 
             <div className="flex justify-between items-center pt-5 border-t border-gray-100">
               <button
-                onClick={() => {
-                  if (window.confirm("Exit this drill? Current progress will remain logged.")) {
-                    setSession(null);
+                onClick={(e) => {
+                  const btn = e.currentTarget;
+                  if (btn.innerText === "Quit Drill") {
+                    btn.innerText = "Click again to quit";
+                    setTimeout(() => {
+                      if (btn) btn.innerText = "Quit Drill";
+                    }, 3000);
+                    return;
                   }
+                  setSession(null);
                 }}
                 className="text-xs font-semibold text-rose-600 hover:text-rose-700 cursor-pointer"
               >

@@ -285,7 +285,7 @@
           "Academic Training / Classroom Labs"
         ],
         "education": [
-          "CBSE (Expected Class of 2027)"
+          "CBSE (Expected Class of 2027) (Expected Class of 2027)"
         ],
         "certifications": []
       },
@@ -319,6 +319,120 @@
       "status": "active",
       "registeredAt": "2026-06-26T04:37:59.481Z",
       "lastLogin": "2026-06-26T04:37:59.481Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782490003682",
+      "name": "T16",
+      "email": "t16@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-26T16:06:43.682Z",
+      "lastLogin": "2026-06-26T16:06:43.682Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782490009881",
+      "name": "T17",
+      "email": "t17@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-26T16:06:49.881Z",
+      "lastLogin": "2026-06-26T16:06:49.881Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782490019623",
+      "name": "T18",
+      "email": "t18@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-26T16:06:59.623Z",
+      "lastLogin": "2026-06-26T16:06:59.623Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782490091429",
+      "name": "T19",
+      "email": "t19@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-26T16:08:11.429Z",
+      "lastLogin": "2026-06-26T16:08:11.429Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782490668031",
+      "name": "T20",
+      "email": "t20@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-26T16:17:48.031Z",
+      "lastLogin": "2026-06-26T16:17:48.031Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
+    },
+    {
+      "id": "u_1782490689835",
+      "name": "T21",
+      "email": "t21@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-26T16:18:09.835Z",
+      "lastLogin": "2026-06-26T16:18:09.835Z",
       "profile": {
         "currentRole": "",
         "targetRole": "",
@@ -606,11 +720,202 @@
         "managerial": 0
       },
       "personalityType": "Pending Completion"
+    },
+    "u_1782490668031": {
+      "userId": "u_1782490668031",
+      "answers": {},
+      "completed": false,
+      "score": 0,
+      "aptitudeScore": 0,
+      "interestsScore": {
+        "analytical": 0,
+        "creative": 0,
+        "social": 0,
+        "technical": 0,
+        "managerial": 0
+      },
+      "personalityType": "Pending Completion"
+    },
+    "u_1782490689835": {
+      "userId": "u_1782490689835",
+      "answers": {
+        "apt_1": "wrong",
+        "int_1": "B"
+      },
+      "completed": true,
+      "score": 12,
+      "aptitudeScore": 30,
+      "interestsScore": {
+        "analytical": 45,
+        "creative": 15,
+        "social": 10,
+        "technical": 25,
+        "managerial": 20
+      },
+      "personalityType": "Creative Champion",
+      "analysisText": "Your profile suggests an innate inclination toward explorative and expressive work, where conventional frameworks may feel restrictive. As a student beginning your journey, your focus on interest-driven activities rather than rigid technical perfection indicates that you thrive best in environments that prioritize vision and human-centric design over purely mechanical execution. You possess the raw potential to shape abstract ideas into impactful realities when given the space to experiment without the pressure of immediate, error-free technical precision.\n\nTo reach your highest potential, seek out dynamic workspaces that champion innovation and collaborative brainstorming sessions. Your ideal environment is one that rewards curiosity and adaptive thinking, providing you with a canvas to influence projects through your unique perspective. By surrounding yourself with teams that value unconventional problem-solving, you will find the momentum needed to turn your creative interests into a defining career path that merges personal passion with professional mastery.",
+      "completedAt": "2026-06-26T16:18:13.153Z"
     }
   },
-  "recommendations": {},
+  "recommendations": {
+    "u_1782447255178": [
+      {
+        "role": "Frontend Developer",
+        "confidenceScore": 0.85,
+        "matchPercentage": 85,
+        "justification": "This path leverages your technical background while allowing you to focus on the user-centric design aspects that align with your high social aptitude. As modern web applications increasingly prioritize accessibility and human-computer interaction, your ability to empathize with user needs gives you a unique edge. Mastering the visual layer of software will transform your current programming knowledge into intuitive, people-focused digital experiences.",
+        "matchedSkills": [
+          "Python"
+        ],
+        "missingSkills": [
+          "JavaScript",
+          "React",
+          "CSS",
+          "HTML"
+        ],
+        "demandLevel": "High"
+      },
+      {
+        "role": "UX Engineer",
+        "confidenceScore": 0.82,
+        "matchPercentage": 82,
+        "justification": "The UX Engineer role is the perfect bridge between your technical CS foundation and your strong social-centric personality profile. It requires bridging the gap between design concepts and functional code, a niche that demands both analytical thinking and effective cross-team communication. With the current market shifting toward product-led growth, professionals who can advocate for the user while writing robust code are in high demand.",
+        "matchedSkills": [
+          "Python",
+          "Java"
+        ],
+        "missingSkills": [
+          "Figma",
+          "TypeScript",
+          "UI Design Principles",
+          "User Research"
+        ],
+        "demandLevel": "High"
+      },
+      {
+        "role": "Technical Community Manager",
+        "confidenceScore": 0.78,
+        "matchPercentage": 78,
+        "justification": "Your high social aptitude score suggests you excel at building connections, making you an ideal candidate to drive developer advocacy and community engagement for frontend frameworks. This path utilizes your CS degree to maintain technical credibility while focusing primarily on interpersonal influence and support. As developer ecosystems grow more competitive, companies are investing heavily in advocates who can translate complex technical value to a human audience.",
+        "matchedSkills": [
+          "Python",
+          "Java"
+        ],
+        "missingSkills": [
+          "Technical Writing",
+          "Public Speaking",
+          "Content Strategy",
+          "Developer Relations"
+        ],
+        "demandLevel": "Medium"
+      }
+    ]
+  },
   "roadmaps": {},
-  "interviews": {},
+  "interviews": {
+    "u_1782490019623": {
+      "userId": "u_1782490019623",
+      "role": "Full-Stack Web Developer",
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "Technical",
+          "question": "How would you design and implement a secure, high-throughput API endpoint that handles file uploads (e.g., user profile images) and stores them in an S3 bucket? Specifically, address how you would prevent server-side request forgery (SSRF), payload injection, and Denial of Service (DoS) attacks during this process."
+        },
+        {
+          "id": "q_2",
+          "type": "Technical",
+          "question": "Explain your approach to implementing a distributed caching strategy for a full-stack e-commerce application. How do you balance data consistency (especially for volatile data like inventory levels) with the low latency benefits of caching?"
+        },
+        {
+          "id": "q_3",
+          "type": "Behavioral",
+          "question": "Describe a situation where you had a strong technical disagreement with a product manager or another developer regarding a design choice or framework. How did you communicate your concerns, compromises made, and what was the final outcome?"
+        },
+        {
+          "id": "q_4",
+          "type": "Behavioral",
+          "question": "Tell me about a time when a critical bug or feature request forced you to pivot your focus completely away from a sprint goal with an impending deadline. How did you manage your time, communicate the impact to stakeholders, and ensure quality was not compromised?"
+        },
+        {
+          "id": "q_5",
+          "type": "Situational",
+          "question": "During a major marketing campaign, the application's response time suddenly spikes to over 10 seconds, and the containerized backend instances begin restarting due to out-of-memory (OOM) errors. Walk me through your step-by-step incident response process to diagnose, mitigate, and permanently resolve this issue under pressure."
+        }
+      ],
+      "completed": false
+    },
+    "u_1782490091429": {
+      "userId": "u_1782490091429",
+      "role": "Full-Stack Web Developer",
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "Technical",
+          "question": "How would you optimize a high-traffic React application to minimize re-renders and reduce the Time to Interactive (TTI), and what specific strategies would you use for backend database query performance?",
+          "userAnswer": "I dont know",
+          "score": 0,
+          "feedback": "Your response lacks the technical depth required to address performance optimization at scale. To improve, discuss React-specific concepts like memoization (React.memo, useMemo, useCallback), code-splitting with React.lazy, and virtualized lists to minimize re-renders. For backend performance, consider mentioning database indexing strategies, query caching (like Redis), and the implementation of pagination or cursor-based fetching."
+        },
+        {
+          "id": "q_2",
+          "type": "Technical",
+          "question": "Describe your process for implementing a secure authentication flow. Specifically, how do you handle JWT storage, token rotation, and mitigating vulnerabilities like CSRF and XSS in a cross-domain environment?"
+        },
+        {
+          "id": "q_3",
+          "type": "Behavioral",
+          "question": "Tell me about a time you had to deliver a feature under an extremely tight deadline. How did you balance the need for rapid code deployment with the necessity of maintaining high code quality and test coverage?"
+        },
+        {
+          "id": "q_4",
+          "type": "Behavioral",
+          "question": "Describe a scenario where you disagreed with a senior developer or product manager regarding a technical implementation. How did you advocate for your position, and what was the ultimate resolution?"
+        },
+        {
+          "id": "q_5",
+          "type": "Situational",
+          "question": "Your production application goes down due to a critical memory leak during a peak traffic event. Walk me through your immediate incident response steps, from identification and mitigation to post-mortem analysis."
+        }
+      ],
+      "completed": false
+    },
+    "u_1782447255178": {
+      "userId": "u_1782447255178",
+      "role": "Frontend Engineer",
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "Technical",
+          "question": "Explain the mechanics of the browser's critical rendering path and how you would specifically optimize a site to achieve a 'Good' score on Largest Contentful Paint (LCP) for a dynamic web application.",
+          "userAnswer": "ghg",
+          "score": 0,
+          "feedback": "• Your response is currently insufficient to address the technical complexity of the critical rendering path. • You should expand your answer by detailing the browser's steps: DOM construction, CSSOM creation, render tree, layout, and paint. • To improve your LCP score, consider discussing strategies such as prioritizing high-priority hero images, implementing server-side rendering, and preloading key assets."
+        },
+        {
+          "id": "q_2",
+          "type": "Technical",
+          "question": "When building a highly secure frontend application, how do you mitigate Cross-Site Scripting (XSS) and Cross-Site Request Forgery (CSRF) vulnerabilities, and what role does a strict Content Security Policy (CSP) play in that strategy?"
+        },
+        {
+          "id": "q_3",
+          "type": "Behavioral",
+          "question": "Describe a time when you had a fundamental technical disagreement with a backend engineer or a designer regarding an implementation approach. How did you resolve the conflict to ensure the project stayed on track?"
+        },
+        {
+          "id": "q_4",
+          "type": "Behavioral",
+          "question": "Tell me about a high-pressure situation where you were at risk of missing a critical production deadline. How did you manage your tasks and communicate the delay to stakeholders?"
+        },
+        {
+          "id": "q_5",
+          "type": "Situational",
+          "question": "The production site crashes for 10% of users due to a dependency update that wasn't caught in staging. Walk me through your immediate incident response steps, from identifying the root cause to deploying a fix and ensuring long-term prevention."
+        }
+      ],
+      "completed": false
+    }
+  },
   "jobInsights": {},
   "systemConfig": {
     "platformName": "CAREER-MATE MACGS",
