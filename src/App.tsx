@@ -319,6 +319,7 @@ export default function App() {
                 setAssessment(nextAssessment);
                 syncUserData(user.id);
               }} 
+              onNavigateToRecommendations={() => setActiveTab("recommendations")}
             />
           )}
 
@@ -330,6 +331,7 @@ export default function App() {
               onSetRecommendations={setRecommendations}
               onSetTargetTrack={handleSetTargetTrack}
               activeRoleTrack={activeRoleTrack}
+              onNavigateToAssessment={() => setActiveTab("assessment")}
             />
           )}
 

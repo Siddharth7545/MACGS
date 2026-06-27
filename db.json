@@ -285,7 +285,7 @@
           "Academic Training / Classroom Labs"
         ],
         "education": [
-          "CBSE (Expected Class of 2027) (Expected Class of 2027)"
+          "B.E. Computer Science (2027)"
         ],
         "certifications": []
       },
@@ -537,6 +537,25 @@
         "education": [],
         "certifications": []
       }
+    },
+    {
+      "id": "u_1782534727274",
+      "name": "T27",
+      "email": "t27@t.com",
+      "passwordHash": "p",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-06-27T04:32:07.274Z",
+      "lastLogin": "2026-06-27T04:32:07.274Z",
+      "profile": {
+        "currentRole": "",
+        "targetRole": "",
+        "skills": [],
+        "interests": [],
+        "experience": [],
+        "education": [],
+        "certifications": []
+      }
     }
   ],
   "assessments": {
@@ -756,18 +775,31 @@
     },
     "u_1782447255178": {
       "userId": "u_1782447255178",
-      "answers": {},
-      "completed": false,
-      "score": 0,
-      "aptitudeScore": 0,
-      "interestsScore": {
-        "analytical": 0,
-        "creative": 0,
-        "social": 0,
-        "technical": 0,
-        "managerial": 0
+      "answers": {
+        "apt_1": "incorrect_2",
+        "apt_2": "incorrect_3",
+        "apt_3": "incorrect_2",
+        "apt_4": "correct",
+        "int_1": "C",
+        "int_2": "D",
+        "int_3": "C",
+        "per_1": "D",
+        "per_2": "B",
+        "per_3": "C"
       },
-      "personalityType": "Pending Completion",
+      "completed": true,
+      "score": 41,
+      "aptitudeScore": 50,
+      "interestsScore": {
+        "analytical": 30,
+        "creative": 15,
+        "social": 70,
+        "technical": 60,
+        "managerial": 20
+      },
+      "personalityType": "People-Centric Specialist",
+      "analysisText": "You derive energy and inspiration from direct communication, team syncs, and mentorship, aiming to organize programs that cultivate collective alignment.",
+      "completedAt": "2026-06-27T04:29:16.022Z",
       "questions": [
         {
           "id": "apt_1",

@@ -9,6 +9,7 @@ interface RecommendationsPageProps {
   onSetRecommendations: (recs: CareerRecommendation[]) => void;
   onSetTargetTrack: (roleName: string, missingSkills: string[]) => void;
   activeRoleTrack: string | null;
+  onNavigateToAssessment?: () => void;
 }
 
 export default function RecommendationsPage({
@@ -18,6 +19,7 @@ export default function RecommendationsPage({
   onSetRecommendations,
   onSetTargetTrack,
   activeRoleTrack,
+  onNavigateToAssessment
 }: RecommendationsPageProps) {
   const [loading, setLoading] = useState(false);
   const [initiateLoading, setInitiateLoading] = useState<string | null>(null);
@@ -100,7 +102,7 @@ export default function RecommendationsPage({
           <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0" />
           <div>
             <span className="font-bold block">Assessment pending.</span>
-            Our recommendations currently utilize baseline profile matching. To gain highly precise, adaptive psychometric profiling, we strongly recommend taking the <button onClick={() => {}} className="underline font-bold hover:text-amber-700 cursor-pointer">Adaptive Assessment questionnaire</button>!
+            Our recommendations currently utilize baseline profile matching. To gain highly precise, adaptive psychometric profiling, we strongly recommend taking the <button onClick={() => { if (onNavigateToAssessment) onNavigateToAssessment(); }} className="underline font-bold hover:text-amber-700 cursor-pointer">Adaptive Assessment questionnaire</button>!
           </div>
         </div>
       )}

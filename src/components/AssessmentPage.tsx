@@ -7,9 +7,10 @@ interface AssessmentPageProps {
   user: User;
   assessment: Assessment | null;
   onAssessmentCompleted: (assessment: Assessment) => void;
+  onNavigateToRecommendations?: () => void;
 }
 
-export default function AssessmentPage({ user, assessment, onAssessmentCompleted }: AssessmentPageProps) {
+export default function AssessmentPage({ user, assessment, onAssessmentCompleted, onNavigateToRecommendations }: AssessmentPageProps) {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [answers, setAnswers] = useState<{ [qId: string]: string }>({});
   
@@ -189,7 +190,11 @@ export default function AssessmentPage({ user, assessment, onAssessmentCompleted
               Reset Assessment
             </button>
             <button
-              onClick={() => onAssessmentCompleted(assessment)}
+              onClick={() => {
+                if (onNavigateToRecommendations) {
+                  onNavigateToRecommendations();
+                }
+              }}
               className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-xs cursor-pointer flex items-center shadow-sm"
             >
               Examine Recommendations <ArrowRight className="w-4 h-4 ml-1.5" />
