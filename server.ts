@@ -465,31 +465,33 @@ app.post("/api/agent/recommendations/:userId", async (req, res) => {
     assessment: assessment || { score: 65, aptitudeScore: 70, personalityType: "Aspirational Explorer", interestsScore: { analytical: 60, creative: 40, technical: 50, social: 30, managerial: 20 } },
   };
 
+  const userTarget = user.profile?.targetRole && user.profile.targetRole.trim().length > 0 ? user.profile.targetRole : "Full-Stack Web Developer";
+
   let recommendations: CareerRecommendation[] = [
     {
-      role: "Full-Stack Web Developer",
-      confidenceScore: 0.92,
-      matchPercentage: 92,
-      justification: "Your strong technical skills, combined with a creative design aptitude and solid critical execution scores, map perfectly onto full-stack application architecting.",
-      matchedSkills: (user.profile?.skills || []).slice(0, 3).concat(["Vite", "JSON Data Modeling"]),
-      missingSkills: ["Tailwind CSS v4", "Docker Containers", "PostgreSQL", "GoogleGenAI SDK"],
+      role: userTarget,
+      confidenceScore: 0.95,
+      matchPercentage: 95,
+      justification: `Based on your stated target role of ${userTarget}, your profile shows great alignment. You have foundational elements but will need to bridge a few key skill gaps to master this path.`,
+      matchedSkills: (user.profile?.skills || []).slice(0, 4),
+      missingSkills: [`Advanced ${userTarget} Patterns`, "Production Deployment", "Performance Optimization"],
       demandLevel: "High",
     },
     {
       role: "AI Integration Solutions Engineer",
       confidenceScore: 0.85,
       matchPercentage: 85,
-      justification: "Your stated interest in AI Orchestration combined with analytical thinking matches the urgent global need for developers capable of wiring up LLMs securely.",
-      matchedSkills: ["Express", "System Orchestration"].filter((s) => (user.profile?.skills || []).includes(s)),
+      justification: "Your stated interest in continuous learning and analytical thinking matches the urgent global need for developers capable of wiring up LLMs securely.",
+      matchedSkills: ["System Orchestration", ...(user.profile?.skills || []).slice(0, 2)],
       missingSkills: ["Gemini API Function Calling", "Prompt Engineering", "Vector Embeddings", "RAG Pipeline Tuning"],
       demandLevel: "High",
     },
     {
-      role: "DevOps & Cloud Administrator",
+      role: "Cloud Administrator & Operations",
       confidenceScore: 0.78,
       matchPercentage: 78,
-      justification: "Your background in Server Administration and security certifications indicate a robust readiness to design auto-scaling container configurations.",
-      matchedSkills: (user.profile?.skills || []).filter((s) => ["Docker", "Server Administration"].includes(s)),
+      justification: "Your background indicates a robust readiness to design auto-scaling container configurations and secure deployment pipelines.",
+      matchedSkills: (user.profile?.skills || []).slice(0, 2).concat(["Problem Solving"]),
       missingSkills: ["GitHub Actions", "Kubernetes Clustering", "Redis Caching", "Nginx Proxies"],
       demandLevel: "Medium",
     },
@@ -564,39 +566,16 @@ app.post("/api/agent/roadmap/:userId", async (req, res) => {
 
   const ai = getGeminiClient();
 
-  // Baseline simulated 12-week plan
+  // Baseline roadmap structure
   let roadmap: LearningRoadmap = {
     userId,
     role,
     progressPct: 0,
     startedAt: new Date().toISOString(),
     skillsAcquired: [],
-    milestones: Array.from({ length: 4 }).map((_, idx) => ({
-      week: idx + 1,
-      focus: `Master core prerequisites of ${role} - Phase ${idx + 1}`,
-      description: `Deep dive into the core foundations. Understand essential paradigms and code architectural strategies.`,
-      hoursPerWeek: 10,
-      completed: false,
-      resources: [
-        {
-          title: `Introductory specialization for ${role}`,
-          platform: "Coursera",
-          url: "https://www.coursera.org",
-          type: "course",
-          completed: false,
-        },
-        {
-          title: "Prerequisite Guide Book",
-          platform: "Amazon Books",
-          url: "https://books.google.com",
-          type: "book",
-          completed: false,
-        },
-      ],
-    })),
+    milestones: [],
   };
 
-  // Create a 12-week detailed schedule if we have Gemini
   if (ai) {
     try {
       const prompt = `Act as the Resource Agent (A-005). Generate a time-bound, detailed 12-week Learning Roadmap to close the skill gaps for:
@@ -641,32 +620,42 @@ app.post("/api/agent/roadmap/:userId", async (req, res) => {
         }));
       }
     } catch (err: any) {
-      console.warn("Gemini key roadmap creation failed, falling back to 12-week simulated track:", err?.message || err);
-      // Seed a robust 6 week block instead of 4
-      roadmap.milestones = Array.from({ length: 6 }).map((_, idx) => ({
+      console.warn("Gemini key roadmap creation failed, falling back to dynamic simulated track:", err?.message || err);
+    }
+  }
+
+  // If AI is not configured or failed to generate milestones, create dynamic milestones based on missingSkills
+  if (!roadmap.milestones || roadmap.milestones.length === 0) {
+    const milestonesCount = missingSkills && missingSkills.length > 0 ? missingSkills.length * 2 : 4;
+    roadmap.milestones = Array.from({ length: milestonesCount }).map((_, idx) => {
+      const targetSkill = missingSkills && missingSkills.length > 0 
+        ? missingSkills[idx % missingSkills.length] 
+        : role;
+        
+      return {
         week: idx + 1,
-        focus: `Phase ${idx + 1}: Mastering ${missingSkills[idx % missingSkills.length] || "Advanced Systems Architectures"}`,
-        description: `This week you focus on key implementation patterns, setting up project sandboxes, and committing production-grade sample files.`,
-        hoursPerWeek: 12,
+        focus: `Phase ${idx + 1}: Mastering ${targetSkill}`,
+        description: `This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for ${targetSkill}.`,
+        hoursPerWeek: 10 + (idx % 3),
         completed: false,
         resources: [
           {
-            title: `Ultimate Guide on ${missingSkills[idx % missingSkills.length] || "System Operations"}`,
+            title: `Ultimate Guide on ${targetSkill}`,
             platform: "YouTube",
             url: "https://www.youtube.com",
             type: "video",
             completed: false,
           },
           {
-            title: `${missingSkills[idx % missingSkills.length] || "Platform"} Specialist Certification`,
+            title: `${targetSkill} Specialist Certification`,
             platform: "Coursera",
             url: "https://www.coursera.org",
             type: "course",
             completed: false,
           },
         ],
-      }));
-    }
+      };
+    });
   }
 
   fileDb.saveRoadmap(userId, roadmap);
