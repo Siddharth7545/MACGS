@@ -861,6 +861,20 @@ app.post("/api/agent/interview/:userId/submit-answer", async (req, res) => {
   let score = 80;
   let feedback = "Excellent effort! You clearly articulated the foundational tenets here. Try to supplement your answer with quantitative code examples or specific DevOps execution strategies.";
 
+  // Smarter fallback if no AI is available
+  if (userAnswer.length < 15) {
+    score = 15;
+    feedback = "Your answer is too short to evaluate properly. Please provide a more detailed response.";
+  } else {
+    const qWords = q.question.toLowerCase().split(/\W+/).filter((w: string) => w.length > 4);
+    const aWords = userAnswer.toLowerCase();
+    const matches = qWords.filter((w: string) => aWords.includes(w));
+    if (matches.length === 0 && qWords.length > 0) {
+      score = 25;
+      feedback = "Your response doesn't seem to address the core topics of the question. Make sure to read the question carefully and address the specific points asked.";
+    }
+  }
+
   if (ai) {
     try {
       const prompt = `Act as the Interview Preparation Agent (A-007). Evaluate candidate response suitability.
@@ -868,7 +882,9 @@ app.post("/api/agent/interview/:userId/submit-answer", async (req, res) => {
       Question Focus: "${q.question}"
       User Practice Submission: "${userAnswer}"
 
-      Assign an objective score from 0 to 100 based on accuracy, vocabulary density, clarity, and architectural standards.
+      CRITICAL INSTRUCTION: First, analyze if the user's answer is actually related to the question. If the answer is unrelated, off-topic, gibberish, or just keyboard smashing, you MUST assign a very low score (e.g., 0-30) and explain in the feedback that the answer does not address the question.
+
+      If it is related, assign an objective score from 0 to 100 based on accuracy, vocabulary density, clarity, and architectural standards.
       Write 3 friendly, bulleted sentences of constructive feedback or additions they should make.
 
       Respond ONLY with valid, parseable JSON:
