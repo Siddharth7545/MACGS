@@ -6,9 +6,10 @@ interface ProfilePageProps {
   user: User;
   onProfileUpdate: (updatedUser: User) => void;
   onTriggerReanalysis?: () => void;
+  onNavigateToNext?: () => void;
 }
 
-export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis }: ProfilePageProps) {
+export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis, onNavigateToNext }: ProfilePageProps) {
   // Local state
   const [name, setName] = useState(user.name);
   const [currentRole, setCurrentRole] = useState(user.profile?.currentRole || "");
@@ -29,12 +30,94 @@ export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const [inputError, setInputError] = useState<{ field: string, message: string } | null>(null);
+
+  const isValidEntry = (text: string) => {
+    const t = text.trim();
+    if (t.length < 2) return false;
+    if (!/[a-zA-Z]/.test(t)) return false; // Must contain at least one letter
+    if (/(.)\1{3,}/.test(t)) return false; // No repeated chars like aaaa
+    if (/^(asdf|qwer|zxcv|test|dummy|abcd|xyz|none|n\/a|na|null|undefined|nothing|idk|unknown)/i.test(t)) return false;
+    // Common keyboard smashes
+    if (/[bcdfghjklmnpqrstvwxyz]{5,}/i.test(t)) return false;
+    return true;
+  };
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setErrorMsg("");
     setSuccessMsg("");
+    setInputError(null);
+
+    if (!isValidEntry(name)) {
+      setErrorMsg("Please enter a valid, meaningful Name. Meaningless inputs confuse the AI.");
+      setInputError({ field: "Name", message: "Invalid Name" });
+      setLoading(false);
+      return;
+    }
+    if (currentRole && !isValidEntry(currentRole)) {
+      setErrorMsg("Please enter a valid, meaningful Current Role. Meaningless inputs confuse the AI.");
+      setInputError({ field: "CurrentRole", message: "Invalid Current Role" });
+      setLoading(false);
+      return;
+    }
+    if (targetRole && !isValidEntry(targetRole)) {
+      setErrorMsg("Please enter a valid, meaningful Target Role. Meaningless inputs confuse the AI.");
+      setInputError({ field: "TargetRole", message: "Invalid Target Role" });
+      setLoading(false);
+      return;
+    }
+
+    // Validate all items in the lists to be absolutely sure
+    const allListEntries = [
+      ...skills.map(s => ({ type: "Skill", val: s })),
+      ...interests.map(s => ({ type: "Interest", val: s })),
+      ...experience.map(s => ({ type: "Experience", val: s })),
+      ...education.map(s => ({ type: "Education", val: s })),
+      ...certifications.map(s => ({ type: "Certification", val: s }))
+    ];
+
+    for (const entry of allListEntries) {
+      if (!isValidEntry(entry.val)) {
+        setErrorMsg(`Found an invalid entry in ${entry.type}s: "${entry.val}". Please remove meaningless entries before saving.`);
+        setLoading(false);
+        return;
+      }
+    }
+
+    if (skills.length === 0 && experience.length === 0 && education.length === 0) {
+      setErrorMsg("Please add at least some skills, experience, or education for the AI to analyze.");
+      setLoading(false);
+      return;
+    }
+
+    // Check for pending unsaved valid/invalid input in add fields
+    if (newSkill.trim() && !isValidEntry(newSkill)) {
+      setErrorMsg("Unsaved invalid Skill. Please clear it or enter a meaningful value.");
+      setInputError({ field: "Skill", message: "Invalid input" });
+      setLoading(false); return;
+    }
+    if (newInterest.trim() && !isValidEntry(newInterest)) {
+      setErrorMsg("Unsaved invalid Interest. Please clear it or enter a meaningful value.");
+      setInputError({ field: "Interest", message: "Invalid input" });
+      setLoading(false); return;
+    }
+    if (newExp.trim() && !isValidEntry(newExp)) {
+      setErrorMsg("Unsaved invalid Experience. Please clear it or enter a meaningful value.");
+      setInputError({ field: "Experience", message: "Invalid input" });
+      setLoading(false); return;
+    }
+    if (newEdu.trim() && !isValidEntry(newEdu)) {
+      setErrorMsg("Unsaved invalid Education. Please clear it or enter a meaningful value.");
+      setInputError({ field: "Education", message: "Invalid input" });
+      setLoading(false); return;
+    }
+    if (newCert.trim() && !isValidEntry(newCert)) {
+      setErrorMsg("Unsaved invalid Certification. Please clear it or enter a meaningful value.");
+      setInputError({ field: "Certification", message: "Invalid input" });
+      setLoading(false); return;
+    }
 
     const payload = {
       name,
@@ -65,7 +148,12 @@ export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis
         profile: data.profile,
       });
       setSuccessMsg("Profile synced securely on our cloud node!");
-      setTimeout(() => setSuccessMsg(""), 4000);
+      setTimeout(() => {
+        setSuccessMsg("");
+        if (onNavigateToNext) {
+          onNavigateToNext();
+        }
+      }, 1500);
     } catch (err: any) {
       setErrorMsg(err.message || "Something went wrong.");
     } finally {
@@ -74,40 +162,32 @@ export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis
   };
 
   // Add handlers
-  const handleAddSkill = () => {
-    if (newSkill.trim() && !skills.includes(newSkill.trim())) {
-      setSkills([...skills, newSkill.trim()]);
-      setNewSkill("");
+  const validateAndAdd = (
+    val: string,
+    list: string[],
+    setList: React.Dispatch<React.SetStateAction<string[]>>,
+    setVal: React.Dispatch<React.SetStateAction<string>>,
+    fieldName: string
+  ) => {
+    setErrorMsg("");
+    setInputError(null);
+    if (!val.trim()) return;
+    if (!isValidEntry(val)) {
+      setErrorMsg(`Please enter a valid, meaningful ${fieldName.toLowerCase()}. Meaningless inputs confuse the AI.`);
+      setInputError({ field: fieldName, message: `Invalid ${fieldName}` });
+      return;
+    }
+    if (!list.includes(val.trim())) {
+      setList([...list, val.trim()]);
+      setVal("");
     }
   };
 
-  const handleAddInterest = () => {
-    if (newInterest.trim() && !interests.includes(newInterest.trim())) {
-      setInterests([...interests, newInterest.trim()]);
-      setNewInterest("");
-    }
-  };
-
-  const handleAddExp = () => {
-    if (newExp.trim()) {
-      setExperience([...experience, newExp.trim()]);
-      setNewExp("");
-    }
-  };
-
-  const handleAddEdu = () => {
-    if (newEdu.trim()) {
-      setEducation([...education, newEdu.trim()]);
-      setNewEdu("");
-    }
-  };
-
-  const handleAddCert = () => {
-    if (newCert.trim()) {
-      setCertifications([...certifications, newCert.trim()]);
-      setNewCert("");
-    }
-  };
+  const handleAddSkill = () => validateAndAdd(newSkill, skills, setSkills, setNewSkill, "Skill");
+  const handleAddInterest = () => validateAndAdd(newInterest, interests, setInterests, setNewInterest, "Interest");
+  const handleAddExp = () => validateAndAdd(newExp, experience, setExperience, setNewExp, "Experience");
+  const handleAddEdu = () => validateAndAdd(newEdu, education, setEducation, setNewEdu, "Education");
+  const handleAddCert = () => validateAndAdd(newCert, certifications, setCertifications, setNewCert, "Certification");
 
   // Delete handlers
   const handleDelSkill = (val: string) => setSkills(skills.filter((s) => s !== val));
@@ -177,10 +257,14 @@ export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis
               <input
                 type="text"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-xs"
+                onChange={(e) => {
+                  setName(e.target.value);
+                  if (inputError?.field === "Name") setInputError(null);
+                }}
+                className={`w-full px-3 py-2 border rounded-lg text-xs ${inputError?.field === "Name" ? "border-rose-500 bg-rose-50" : "border-gray-200"}`}
                 required
               />
+              {inputError?.field === "Name" && <p className="text-[10px] text-rose-600 font-semibold mt-1">{inputError.message}</p>}
             </div>
             <div>
               <label className="block text-xs font-semibold text-gray-750 uppercase tracking-widest mb-1.5">
@@ -190,9 +274,13 @@ export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis
                 type="text"
                 placeholder="e.g. Computer Science Student"
                 value={currentRole}
-                onChange={(e) => setCurrentRole(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-xs"
+                onChange={(e) => {
+                  setCurrentRole(e.target.value);
+                  if (inputError?.field === "CurrentRole") setInputError(null);
+                }}
+                className={`w-full px-3 py-2 border rounded-lg text-xs ${inputError?.field === "CurrentRole" ? "border-rose-500 bg-rose-50" : "border-gray-200"}`}
               />
+              {inputError?.field === "CurrentRole" && <p className="text-[10px] text-rose-600 font-semibold mt-1">{inputError.message}</p>}
             </div>
             <div>
               <label className="block text-xs font-semibold text-gray-750 uppercase tracking-widest mb-1.5">
@@ -202,9 +290,13 @@ export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis
                 type="text"
                 placeholder="e.g. AI Integrator / Web Architect"
                 value={targetRole}
-                onChange={(e) => setTargetRole(e.target.value)}
-                className="w-full px-3 py-2 border border-blue-200 rounded-lg text-xs focus:ring-2 focus:ring-amber-500"
+                onChange={(e) => {
+                  setTargetRole(e.target.value);
+                  if (inputError?.field === "TargetRole") setInputError(null);
+                }}
+                className={`w-full px-3 py-2 border rounded-lg text-xs focus:ring-2 focus:ring-amber-500 ${inputError?.field === "TargetRole" ? "border-rose-500 bg-rose-50" : "border-blue-200"}`}
               />
+              {inputError?.field === "TargetRole" && <p className="text-[10px] text-rose-600 font-semibold mt-1">{inputError.message}</p>}
             </div>
           </div>
         </div>
@@ -224,9 +316,12 @@ export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis
                 type="text"
                 placeholder="e.g. React 19, TypeScript"
                 value={newSkill}
-                onChange={(e) => setNewSkill(e.target.value)}
+                onChange={(e) => {
+                  setNewSkill(e.target.value);
+                  if (inputError?.field === "Skill") setInputError(null);
+                }}
                 onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleAddSkill())}
-                className="flex-1 px-3 py-1.5 border border-gray-200 rounded-lg text-xs focus:outline-none"
+                className={`flex-1 px-3 py-1.5 border rounded-lg text-xs focus:outline-none ${inputError?.field === "Skill" ? "border-rose-500 bg-rose-50" : "border-gray-200"}`}
               />
               <button
                 type="button"
@@ -236,6 +331,7 @@ export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis
                 <Plus className="w-4 h-4" />
               </button>
             </div>
+            {inputError?.field === "Skill" && <p className="text-[10px] text-rose-600 font-semibold">{inputError.message}</p>}
             <div className="flex flex-wrap gap-1.5 pt-2">
               {skills.length === 0 ? (
                 <span className="text-xs text-gray-400 italic">No skill tags registered yet.</span>
@@ -268,9 +364,12 @@ export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis
                 type="text"
                 placeholder="e.g. Automation, Web Design"
                 value={newInterest}
-                onChange={(e) => setNewInterest(e.target.value)}
+                onChange={(e) => {
+                  setNewInterest(e.target.value);
+                  if (inputError?.field === "Interest") setInputError(null);
+                }}
                 onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleAddInterest())}
-                className="flex-1 px-3 py-1.5 border border-gray-200 rounded-lg text-xs focus:outline-none"
+                className={`flex-1 px-3 py-1.5 border rounded-lg text-xs focus:outline-none ${inputError?.field === "Interest" ? "border-rose-500 bg-rose-50" : "border-gray-200"}`}
               />
               <button
                 type="button"
@@ -280,6 +379,7 @@ export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis
                 <Plus className="w-4 h-4" />
               </button>
             </div>
+            {inputError?.field === "Interest" && <p className="text-[10px] text-rose-600 font-semibold">{inputError.message}</p>}
             <div className="flex flex-wrap gap-1.5 pt-2">
               {interests.length === 0 ? (
                 <span className="text-xs text-gray-400 italic">No interests listed.</span>
@@ -312,8 +412,11 @@ export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis
                 type="text"
                 placeholder="e.g. B.E. Computer Science, XII Standard"
                 value={newEdu}
-                onChange={(e) => setNewEdu(e.target.value)}
-                className="flex-1 px-3 py-1.5 border border-gray-200 rounded-lg text-xs"
+                onChange={(e) => {
+                  setNewEdu(e.target.value);
+                  if (inputError?.field === "Education") setInputError(null);
+                }}
+                className={`flex-1 px-3 py-1.5 border rounded-lg text-xs ${inputError?.field === "Education" ? "border-rose-500 bg-rose-50" : "border-gray-200"}`}
               />
               <button
                 type="button"
@@ -323,6 +426,7 @@ export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis
                 Insert Row
               </button>
             </div>
+            {inputError?.field === "Education" && <p className="text-[10px] text-rose-600 font-semibold">{inputError.message}</p>}
             <ul className="divide-y divide-gray-100 text-xs">
               {education.map((edu, index) => (
                 <li key={index} className="py-2 flex items-center justify-between">
@@ -345,8 +449,11 @@ export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis
                 type="text"
                 placeholder="e.g. Created a mini full-stack e-commerce demo"
                 value={newExp}
-                onChange={(e) => setNewExp(e.target.value)}
-                className="flex-1 px-3 py-1.5 border border-gray-200 rounded-lg text-xs"
+                onChange={(e) => {
+                  setNewExp(e.target.value);
+                  if (inputError?.field === "Experience") setInputError(null);
+                }}
+                className={`flex-1 px-3 py-1.5 border rounded-lg text-xs ${inputError?.field === "Experience" ? "border-rose-500 bg-rose-50" : "border-gray-200"}`}
               />
               <button
                 type="button"
@@ -356,6 +463,7 @@ export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis
                 Insert Row
               </button>
             </div>
+            {inputError?.field === "Experience" && <p className="text-[10px] text-rose-600 font-semibold">{inputError.message}</p>}
             <ul className="divide-y divide-gray-100 text-xs">
               {experience.map((exp, index) => (
                 <li key={index} className="py-2 flex items-center justify-between">
@@ -378,8 +486,11 @@ export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis
                 type="text"
                 placeholder="e.g. Certified Cloud Developer Associate"
                 value={newCert}
-                onChange={(e) => setNewCert(e.target.value)}
-                className="flex-1 px-3 py-1.5 border border-gray-200 rounded-lg text-xs"
+                onChange={(e) => {
+                  setNewCert(e.target.value);
+                  if (inputError?.field === "Certification") setInputError(null);
+                }}
+                className={`flex-1 px-3 py-1.5 border rounded-lg text-xs ${inputError?.field === "Certification" ? "border-rose-500 bg-rose-50" : "border-gray-200"}`}
               />
               <button
                 type="button"
@@ -389,6 +500,7 @@ export default function ProfilePage({ user, onProfileUpdate, onTriggerReanalysis
                 Insert Row
               </button>
             </div>
+            {inputError?.field === "Certification" && <p className="text-[10px] text-rose-600 font-semibold">{inputError.message}</p>}
             <ul className="divide-y divide-gray-100 text-xs">
               {certifications.map((cert, index) => (
                 <li key={index} className="py-2 flex items-center justify-between">

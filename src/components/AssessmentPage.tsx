@@ -157,7 +157,43 @@ export default function AssessmentPage({ user, assessment, onAssessmentCompleted
             </div>
           </div>
 
-          <div className="flex justify-between items-center pt-8 border-t border-gray-100">
+          <div className="space-y-4 pt-4 border-t border-gray-100">
+            <h3 className="text-sm font-bold text-gray-900">Assessment Review</h3>
+            <div className="space-y-4 text-xs text-gray-700">
+              {assessment.questions?.map((q, i) => {
+                const userChoice = assessment.answers[q.id];
+                const selectedOption = q.options.find(o => o.value === userChoice);
+                
+                let isCorrect = null;
+                let correctOption = null;
+                if (q.category === "aptitude") {
+                  isCorrect = userChoice === "correct";
+                  correctOption = q.options.find(o => o.value === "correct");
+                }
+
+                return (
+                  <div key={q.id} className={`p-4 rounded-xl border ${isCorrect === false ? 'bg-rose-50 border-rose-100' : 'bg-slate-50 border-slate-200'}`}>
+                    <p className="font-semibold mb-2">{i + 1}. {q.text}</p>
+                    <p className="mb-1">
+                      <span className="font-medium">Your answer: </span>
+                      <span className={isCorrect === false ? "text-rose-600 font-semibold" : "text-slate-800"}>
+                        {selectedOption?.label || "No answer provided"}
+                      </span>
+                      {isCorrect === true && <span className="ml-2 text-emerald-600 font-bold">✓ Correct</span>}
+                      {isCorrect === false && <span className="ml-2 text-rose-600 font-bold">✗ Incorrect</span>}
+                    </p>
+                    {isCorrect === false && correctOption && (
+                      <p className="text-emerald-700 font-medium">
+                        Correct answer: {correctOption.label}
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-gray-100 gap-4">
             <button
               onClick={async (e) => {
                 const btn = e.currentTarget;

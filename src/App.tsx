@@ -308,6 +308,7 @@ export default function App() {
                 localStorage.setItem("macgs_user", JSON.stringify(updatedUser));
               }} 
               onTriggerReanalysis={() => setIsReanalyzing(true)}
+              onNavigateToNext={() => setActiveTab("assessment")}
             />
           )}
 
