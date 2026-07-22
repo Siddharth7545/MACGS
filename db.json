@@ -556,6 +556,98 @@
         "education": [],
         "certifications": []
       }
+    },
+    {
+      "id": "u_1783146245469",
+      "name": "VIS",
+      "email": "vis2404@gmail.com",
+      "passwordHash": "vis",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-07-04T06:24:05.469Z",
+      "lastLogin": "2026-07-04T06:24:05.469Z",
+      "profile": {
+        "currentRole": "Computer Science",
+        "targetRole": "AI Engineer",
+        "skills": [
+          "Python",
+          "Kera",
+          "Pytorch",
+          "Seaborn"
+        ],
+        "interests": [
+          "Data Analysist"
+        ],
+        "experience": [
+          "Academic Training / Classroom Labs"
+        ],
+        "education": [
+          "Parul University (Expected Class of 2027)"
+        ],
+        "certifications": []
+      },
+      "profileAnalyzed": true
+    },
+    {
+      "id": "u_1783147941544",
+      "name": "THS",
+      "email": "ths2400@gmail.com",
+      "passwordHash": "ths",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-07-04T06:52:21.544Z",
+      "lastLogin": "2026-07-04T06:52:21.544Z",
+      "profile": {
+        "currentRole": "Computer Science",
+        "targetRole": "AI Integration Solutions Engineer",
+        "skills": [
+          "Python",
+          "Pandas",
+          "Numpy",
+          "Machine Learning"
+        ],
+        "interests": [
+          "Data Analysist"
+        ],
+        "experience": [
+          "Academic Training / Classroom Labs"
+        ],
+        "education": [
+          "Parul University (Expected Class of 2027)"
+        ],
+        "certifications": []
+      },
+      "profileAnalyzed": true
+    },
+    {
+      "id": "u_1783148833632",
+      "name": "THUS",
+      "email": "thus2401@gmail.com",
+      "passwordHash": "thus",
+      "userType": "student",
+      "status": "active",
+      "registeredAt": "2026-07-04T07:07:13.632Z",
+      "lastLogin": "2026-07-04T08:12:17.610Z",
+      "profile": {
+        "currentRole": "Computer Science",
+        "targetRole": "Cloud Analysts",
+        "skills": [
+          "SQL",
+          "Numpy",
+          "Pandas"
+        ],
+        "interests": [
+          "Data Analysts"
+        ],
+        "experience": [
+          "Academic Training / Classroom Labs"
+        ],
+        "education": [
+          "Parul University (Expected Class of 2027)"
+        ],
+        "certifications": []
+      },
+      "profileAnalyzed": true
     }
   ],
   "assessments": {
@@ -2164,6 +2256,809 @@
           ]
         }
       ]
+    },
+    "u_1783146245469": {
+      "userId": "u_1783146245469",
+      "answers": {
+        "apt_1": "incorrect_2",
+        "apt_2": "correct",
+        "apt_3": "incorrect_2",
+        "apt_4": "correct",
+        "int_1": "C",
+        "int_2": "D",
+        "int_3": "C",
+        "per_1": "C",
+        "per_2": "C",
+        "per_3": "C"
+      },
+      "completed": true,
+      "score": 43,
+      "aptitudeScore": 70,
+      "interestsScore": {
+        "analytical": 20,
+        "creative": 15,
+        "social": 90,
+        "technical": 50,
+        "managerial": 20
+      },
+      "personalityType": "People-Centric Specialist",
+      "analysisText": "You derive energy and inspiration from direct communication, team syncs, and mentorship, aiming to organize programs that cultivate collective alignment.",
+      "completedAt": "2026-07-04T06:26:18.988Z",
+      "questions": [
+        {
+          "id": "apt_1",
+          "category": "aptitude",
+          "text": "Q1: If a system needs to communicate securely globally, which design pattern blocks client-side API exposure?",
+          "options": [
+            {
+              "label": "Client-side state synchronization (localStorage)",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "Server-side routing proxy utilizing dotenv configurations",
+              "value": "correct"
+            },
+            {
+              "label": "Standard client-side AJAX requests with encoded key strings",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "Integrating third party static embeds on our index.html",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_2",
+          "category": "aptitude",
+          "text": "Q2: Calculate structural time: If a 12-week roadmap mandates 8 hours of learning weekly, what is the total hours required?",
+          "options": [
+            {
+              "label": "84 hours",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "96 hours",
+              "value": "correct"
+            },
+            {
+              "label": "120 hours",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "72 hours",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_3",
+          "category": "aptitude",
+          "text": "Q3: Complete the logic: Node is to JavaScript as Drizzle is to...",
+          "options": [
+            {
+              "label": "MongoDB",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "SQL/PostgreSQL Database ORM",
+              "value": "correct"
+            },
+            {
+              "label": "Vite Asset Bundler",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "HTML Templates",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_4",
+          "category": "aptitude",
+          "text": "Q4: If process.env.NODE_ENV is set to production, how does a standard modular server serve static files?",
+          "options": [
+            {
+              "label": "Vite Hot Module Replacement (HMR) websocket handles it dynamically",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "Express server serves compiled index.html from dist directory",
+              "value": "correct"
+            },
+            {
+              "label": "Client bundle executes live compile server-side",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "Requires an external secondary container routing logic on port 4000",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "int_1",
+          "category": "interests",
+          "text": "Which of these tasks makes you lose track of time?",
+          "options": [
+            {
+              "label": "Drafting layout designs or sketching animation frames (Creative)",
+              "value": "A"
+            },
+            {
+              "label": "Auditing database schemas and optimizing SQL latency (Analytical)",
+              "value": "B"
+            },
+            {
+              "label": "Mentoring junior engineers or coordinating client deliverables (Social)",
+              "value": "C"
+            },
+            {
+              "label": "Writing raw logic algorithms or packaging reusable NPM utilities (Technical)",
+              "value": "D"
+            },
+            {
+              "label": "Spearheading business acquisitions and launching software start-ups (Managerial)",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "int_2",
+          "category": "interests",
+          "text": "How do you prefer to solve standard operational backlogs?",
+          "options": [
+            {
+              "label": "Proposing a completely unique aesthetic or wireframe shift",
+              "value": "A"
+            },
+            {
+              "label": "Running meticulous benchmarks to discover the exact bottleneck",
+              "value": "B"
+            },
+            {
+              "label": "Syncing with the group to ensure roles are delegated properly",
+              "value": "C"
+            },
+            {
+              "label": "Developing automated custom scripts to clear errors automatically",
+              "value": "D"
+            },
+            {
+              "label": "Analyzing industry statistics and rewriting standard parameters",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "int_3",
+          "category": "interests",
+          "text": "Which career resource topic sounds most compelling to read about?",
+          "options": [
+            {
+              "label": "Aesthetic Design Patterns and Typography pair choices",
+              "value": "A"
+            },
+            {
+              "label": "Security auditing and column-encryption standards for PII safety",
+              "value": "B"
+            },
+            {
+              "label": "Interactive workshop facilitation and empathetic communication",
+              "value": "C"
+            },
+            {
+              "label": "LangGraph-based state machine architecture and LLM agents parameters",
+              "value": "D"
+            },
+            {
+              "label": "Strategic fundraising matrices and scale scaling configurations",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "per_1",
+          "category": "personality",
+          "text": "In a hectic team environment, I tend to structure my tasks:",
+          "options": [
+            {
+              "label": "Spontaneously, adapting quickly to aesthetic inspirations",
+              "value": "A"
+            },
+            {
+              "label": "Strictly systematically, working through a structured kanban queue",
+              "value": "B"
+            },
+            {
+              "label": "Empathetically, aligning my deliverables to help other colleagues",
+              "value": "C"
+            },
+            {
+              "label": "Technologically, optimizing my code workspace for maximal pipeline speed",
+              "value": "D"
+            }
+          ]
+        },
+        {
+          "id": "per_2",
+          "category": "personality",
+          "text": "When an unfamiliar system error suddenly halts your deployment script, you immediately:",
+          "options": [
+            {
+              "label": "Search StackOverflow and brainstorm non-standard visual fixes",
+              "value": "A"
+            },
+            {
+              "label": "Trace the logs step-by-step from the initial entry point",
+              "value": "B"
+            },
+            {
+              "label": "Ping the lead DevOps engineer to establish a collaborative diagnostic session",
+              "value": "C"
+            },
+            {
+              "label": "Audit the dependency versions in our package-lock.json directly",
+              "value": "D"
+            }
+          ]
+        },
+        {
+          "id": "per_3",
+          "category": "personality",
+          "text": "Which of these best describes your ultimate ideal professional environment?",
+          "options": [
+            {
+              "label": "A futuristic studio offering creative license and layout experimentation",
+              "value": "A"
+            },
+            {
+              "label": "A stable, highly rigorous firm with strict standard operating protocols",
+              "value": "B"
+            },
+            {
+              "label": "An open collaborative tech-hub focused on positive global impact",
+              "value": "C"
+            },
+            {
+              "label": "A fast-paced core platform scaling advanced computer integrations",
+              "value": "D"
+            }
+          ]
+        }
+      ]
+    },
+    "u_1783147941544": {
+      "userId": "u_1783147941544",
+      "answers": {
+        "apt_1": "incorrect_2",
+        "apt_2": "correct",
+        "apt_3": "incorrect_2",
+        "apt_4": "incorrect_2",
+        "int_1": "C",
+        "int_2": "D",
+        "int_3": "C",
+        "per_1": "C",
+        "per_2": "C",
+        "per_3": "B"
+      },
+      "completed": true,
+      "score": 35,
+      "aptitudeScore": 50,
+      "interestsScore": {
+        "analytical": 30,
+        "creative": 15,
+        "social": 80,
+        "technical": 50,
+        "managerial": 20
+      },
+      "personalityType": "People-Centric Specialist",
+      "analysisText": "You derive energy and inspiration from direct communication, team syncs, and mentorship, aiming to organize programs that cultivate collective alignment.",
+      "completedAt": "2026-07-04T06:53:53.558Z",
+      "questions": [
+        {
+          "id": "apt_1",
+          "category": "aptitude",
+          "text": "Q1: If a system needs to communicate securely globally, which design pattern blocks client-side API exposure?",
+          "options": [
+            {
+              "label": "Client-side state synchronization (localStorage)",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "Server-side routing proxy utilizing dotenv configurations",
+              "value": "correct"
+            },
+            {
+              "label": "Standard client-side AJAX requests with encoded key strings",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "Integrating third party static embeds on our index.html",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_2",
+          "category": "aptitude",
+          "text": "Q2: Calculate structural time: If a 12-week roadmap mandates 8 hours of learning weekly, what is the total hours required?",
+          "options": [
+            {
+              "label": "84 hours",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "96 hours",
+              "value": "correct"
+            },
+            {
+              "label": "120 hours",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "72 hours",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_3",
+          "category": "aptitude",
+          "text": "Q3: Complete the logic: Node is to JavaScript as Drizzle is to...",
+          "options": [
+            {
+              "label": "MongoDB",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "SQL/PostgreSQL Database ORM",
+              "value": "correct"
+            },
+            {
+              "label": "Vite Asset Bundler",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "HTML Templates",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_4",
+          "category": "aptitude",
+          "text": "Q4: If process.env.NODE_ENV is set to production, how does a standard modular server serve static files?",
+          "options": [
+            {
+              "label": "Vite Hot Module Replacement (HMR) websocket handles it dynamically",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "Express server serves compiled index.html from dist directory",
+              "value": "correct"
+            },
+            {
+              "label": "Client bundle executes live compile server-side",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "Requires an external secondary container routing logic on port 4000",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "int_1",
+          "category": "interests",
+          "text": "Which of these tasks makes you lose track of time?",
+          "options": [
+            {
+              "label": "Drafting layout designs or sketching animation frames (Creative)",
+              "value": "A"
+            },
+            {
+              "label": "Auditing database schemas and optimizing SQL latency (Analytical)",
+              "value": "B"
+            },
+            {
+              "label": "Mentoring junior engineers or coordinating client deliverables (Social)",
+              "value": "C"
+            },
+            {
+              "label": "Writing raw logic algorithms or packaging reusable NPM utilities (Technical)",
+              "value": "D"
+            },
+            {
+              "label": "Spearheading business acquisitions and launching software start-ups (Managerial)",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "int_2",
+          "category": "interests",
+          "text": "How do you prefer to solve standard operational backlogs?",
+          "options": [
+            {
+              "label": "Proposing a completely unique aesthetic or wireframe shift",
+              "value": "A"
+            },
+            {
+              "label": "Running meticulous benchmarks to discover the exact bottleneck",
+              "value": "B"
+            },
+            {
+              "label": "Syncing with the group to ensure roles are delegated properly",
+              "value": "C"
+            },
+            {
+              "label": "Developing automated custom scripts to clear errors automatically",
+              "value": "D"
+            },
+            {
+              "label": "Analyzing industry statistics and rewriting standard parameters",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "int_3",
+          "category": "interests",
+          "text": "Which career resource topic sounds most compelling to read about?",
+          "options": [
+            {
+              "label": "Aesthetic Design Patterns and Typography pair choices",
+              "value": "A"
+            },
+            {
+              "label": "Security auditing and column-encryption standards for PII safety",
+              "value": "B"
+            },
+            {
+              "label": "Interactive workshop facilitation and empathetic communication",
+              "value": "C"
+            },
+            {
+              "label": "LangGraph-based state machine architecture and LLM agents parameters",
+              "value": "D"
+            },
+            {
+              "label": "Strategic fundraising matrices and scale scaling configurations",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "per_1",
+          "category": "personality",
+          "text": "In a hectic team environment, I tend to structure my tasks:",
+          "options": [
+            {
+              "label": "Spontaneously, adapting quickly to aesthetic inspirations",
+              "value": "A"
+            },
+            {
+              "label": "Strictly systematically, working through a structured kanban queue",
+              "value": "B"
+            },
+            {
+              "label": "Empathetically, aligning my deliverables to help other colleagues",
+              "value": "C"
+            },
+            {
+              "label": "Technologically, optimizing my code workspace for maximal pipeline speed",
+              "value": "D"
+            }
+          ]
+        },
+        {
+          "id": "per_2",
+          "category": "personality",
+          "text": "When an unfamiliar system error suddenly halts your deployment script, you immediately:",
+          "options": [
+            {
+              "label": "Search StackOverflow and brainstorm non-standard visual fixes",
+              "value": "A"
+            },
+            {
+              "label": "Trace the logs step-by-step from the initial entry point",
+              "value": "B"
+            },
+            {
+              "label": "Ping the lead DevOps engineer to establish a collaborative diagnostic session",
+              "value": "C"
+            },
+            {
+              "label": "Audit the dependency versions in our package-lock.json directly",
+              "value": "D"
+            }
+          ]
+        },
+        {
+          "id": "per_3",
+          "category": "personality",
+          "text": "Which of these best describes your ultimate ideal professional environment?",
+          "options": [
+            {
+              "label": "A futuristic studio offering creative license and layout experimentation",
+              "value": "A"
+            },
+            {
+              "label": "A stable, highly rigorous firm with strict standard operating protocols",
+              "value": "B"
+            },
+            {
+              "label": "An open collaborative tech-hub focused on positive global impact",
+              "value": "C"
+            },
+            {
+              "label": "A fast-paced core platform scaling advanced computer integrations",
+              "value": "D"
+            }
+          ]
+        }
+      ]
+    },
+    "u_1783148833632": {
+      "userId": "u_1783148833632",
+      "answers": {},
+      "completed": false,
+      "score": 0,
+      "aptitudeScore": 0,
+      "interestsScore": {
+        "analytical": 0,
+        "creative": 0,
+        "social": 0,
+        "technical": 0,
+        "managerial": 0
+      },
+      "personalityType": "Pending Completion",
+      "questions": [
+        {
+          "id": "apt_1",
+          "category": "aptitude",
+          "text": "Q1: If a system needs to communicate securely globally, which design pattern blocks client-side API exposure?",
+          "options": [
+            {
+              "label": "Client-side state synchronization (localStorage)",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "Server-side routing proxy utilizing dotenv configurations",
+              "value": "correct"
+            },
+            {
+              "label": "Standard client-side AJAX requests with encoded key strings",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "Integrating third party static embeds on our index.html",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_2",
+          "category": "aptitude",
+          "text": "Q2: Calculate structural time: If a 12-week roadmap mandates 8 hours of learning weekly, what is the total hours required?",
+          "options": [
+            {
+              "label": "84 hours",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "96 hours",
+              "value": "correct"
+            },
+            {
+              "label": "120 hours",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "72 hours",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_3",
+          "category": "aptitude",
+          "text": "Q3: Complete the logic: Node is to JavaScript as Drizzle is to...",
+          "options": [
+            {
+              "label": "MongoDB",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "SQL/PostgreSQL Database ORM",
+              "value": "correct"
+            },
+            {
+              "label": "Vite Asset Bundler",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "HTML Templates",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "apt_4",
+          "category": "aptitude",
+          "text": "Q4: If process.env.NODE_ENV is set to production, how does a standard modular server serve static files?",
+          "options": [
+            {
+              "label": "Vite Hot Module Replacement (HMR) websocket handles it dynamically",
+              "value": "incorrect_1"
+            },
+            {
+              "label": "Express server serves compiled index.html from dist directory",
+              "value": "correct"
+            },
+            {
+              "label": "Client bundle executes live compile server-side",
+              "value": "incorrect_2"
+            },
+            {
+              "label": "Requires an external secondary container routing logic on port 4000",
+              "value": "incorrect_3"
+            }
+          ]
+        },
+        {
+          "id": "int_1",
+          "category": "interests",
+          "text": "Which of these tasks makes you lose track of time?",
+          "options": [
+            {
+              "label": "Drafting layout designs or sketching animation frames (Creative)",
+              "value": "A"
+            },
+            {
+              "label": "Auditing database schemas and optimizing SQL latency (Analytical)",
+              "value": "B"
+            },
+            {
+              "label": "Mentoring junior engineers or coordinating client deliverables (Social)",
+              "value": "C"
+            },
+            {
+              "label": "Writing raw logic algorithms or packaging reusable NPM utilities (Technical)",
+              "value": "D"
+            },
+            {
+              "label": "Spearheading business acquisitions and launching software start-ups (Managerial)",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "int_2",
+          "category": "interests",
+          "text": "How do you prefer to solve standard operational backlogs?",
+          "options": [
+            {
+              "label": "Proposing a completely unique aesthetic or wireframe shift",
+              "value": "A"
+            },
+            {
+              "label": "Running meticulous benchmarks to discover the exact bottleneck",
+              "value": "B"
+            },
+            {
+              "label": "Syncing with the group to ensure roles are delegated properly",
+              "value": "C"
+            },
+            {
+              "label": "Developing automated custom scripts to clear errors automatically",
+              "value": "D"
+            },
+            {
+              "label": "Analyzing industry statistics and rewriting standard parameters",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "int_3",
+          "category": "interests",
+          "text": "Which career resource topic sounds most compelling to read about?",
+          "options": [
+            {
+              "label": "Aesthetic Design Patterns and Typography pair choices",
+              "value": "A"
+            },
+            {
+              "label": "Security auditing and column-encryption standards for PII safety",
+              "value": "B"
+            },
+            {
+              "label": "Interactive workshop facilitation and empathetic communication",
+              "value": "C"
+            },
+            {
+              "label": "LangGraph-based state machine architecture and LLM agents parameters",
+              "value": "D"
+            },
+            {
+              "label": "Strategic fundraising matrices and scale scaling configurations",
+              "value": "E"
+            }
+          ]
+        },
+        {
+          "id": "per_1",
+          "category": "personality",
+          "text": "In a hectic team environment, I tend to structure my tasks:",
+          "options": [
+            {
+              "label": "Spontaneously, adapting quickly to aesthetic inspirations",
+              "value": "A"
+            },
+            {
+              "label": "Strictly systematically, working through a structured kanban queue",
+              "value": "B"
+            },
+            {
+              "label": "Empathetically, aligning my deliverables to help other colleagues",
+              "value": "C"
+            },
+            {
+              "label": "Technologically, optimizing my code workspace for maximal pipeline speed",
+              "value": "D"
+            }
+          ]
+        },
+        {
+          "id": "per_2",
+          "category": "personality",
+          "text": "When an unfamiliar system error suddenly halts your deployment script, you immediately:",
+          "options": [
+            {
+              "label": "Search StackOverflow and brainstorm non-standard visual fixes",
+              "value": "A"
+            },
+            {
+              "label": "Trace the logs step-by-step from the initial entry point",
+              "value": "B"
+            },
+            {
+              "label": "Ping the lead DevOps engineer to establish a collaborative diagnostic session",
+              "value": "C"
+            },
+            {
+              "label": "Audit the dependency versions in our package-lock.json directly",
+              "value": "D"
+            }
+          ]
+        },
+        {
+          "id": "per_3",
+          "category": "personality",
+          "text": "Which of these best describes your ultimate ideal professional environment?",
+          "options": [
+            {
+              "label": "A futuristic studio offering creative license and layout experimentation",
+              "value": "A"
+            },
+            {
+              "label": "A stable, highly rigorous firm with strict standard operating protocols",
+              "value": "B"
+            },
+            {
+              "label": "An open collaborative tech-hub focused on positive global impact",
+              "value": "C"
+            },
+            {
+              "label": "A fast-paced core platform scaling advanced computer integrations",
+              "value": "D"
+            }
+          ]
+        }
+      ]
     }
   },
   "recommendations": {
@@ -2218,9 +3113,618 @@
         ],
         "demandLevel": "Medium"
       }
+    ],
+    "u_1783146245469": [
+      {
+        "role": "AI Engineer",
+        "confidenceScore": 0.95,
+        "matchPercentage": 95,
+        "justification": "Based on your stated target role of AI Engineer, your profile shows great alignment. You have foundational elements but will need to bridge a few key skill gaps to master this path.",
+        "matchedSkills": [
+          "Python",
+          "Kera",
+          "Pytorch",
+          "Seaborn"
+        ],
+        "missingSkills": [
+          "Advanced AI Engineer Patterns",
+          "Production Deployment",
+          "Performance Optimization"
+        ],
+        "demandLevel": "High"
+      },
+      {
+        "role": "AI Integration Solutions Engineer",
+        "confidenceScore": 0.85,
+        "matchPercentage": 85,
+        "justification": "Your stated interest in continuous learning and analytical thinking matches the urgent global need for developers capable of wiring up LLMs securely.",
+        "matchedSkills": [
+          "System Orchestration",
+          "Python",
+          "Kera"
+        ],
+        "missingSkills": [
+          "Gemini API Function Calling",
+          "Prompt Engineering",
+          "Vector Embeddings",
+          "RAG Pipeline Tuning"
+        ],
+        "demandLevel": "High"
+      },
+      {
+        "role": "Cloud Administrator & Operations",
+        "confidenceScore": 0.78,
+        "matchPercentage": 78,
+        "justification": "Your background indicates a robust readiness to design auto-scaling container configurations and secure deployment pipelines.",
+        "matchedSkills": [
+          "Python",
+          "Kera",
+          "Problem Solving"
+        ],
+        "missingSkills": [
+          "GitHub Actions",
+          "Kubernetes Clustering",
+          "Redis Caching",
+          "Nginx Proxies"
+        ],
+        "demandLevel": "Medium"
+      }
+    ],
+    "u_1783147941544": [
+      {
+        "role": "AI Integration Solutions Engineer",
+        "confidenceScore": 0.95,
+        "matchPercentage": 95,
+        "justification": "Based on your stated target role of AI Integration Solutions Engineer, your profile shows great alignment. You have foundational elements but will need to bridge a few key skill gaps to master this path.",
+        "matchedSkills": [
+          "Python",
+          "Pandas",
+          "Numpy",
+          "Machine Learning"
+        ],
+        "missingSkills": [
+          "Advanced AI Integration Solutions Engineer Patterns",
+          "Production Deployment",
+          "Performance Optimization"
+        ],
+        "demandLevel": "High"
+      },
+      {
+        "role": "AI Integration Solutions Engineer",
+        "confidenceScore": 0.85,
+        "matchPercentage": 85,
+        "justification": "Your stated interest in continuous learning and analytical thinking matches the urgent global need for developers capable of wiring up LLMs securely.",
+        "matchedSkills": [
+          "System Orchestration",
+          "Python",
+          "Pandas"
+        ],
+        "missingSkills": [
+          "Gemini API Function Calling",
+          "Prompt Engineering",
+          "Vector Embeddings",
+          "RAG Pipeline Tuning"
+        ],
+        "demandLevel": "High"
+      },
+      {
+        "role": "Cloud Administrator & Operations",
+        "confidenceScore": 0.78,
+        "matchPercentage": 78,
+        "justification": "Your background indicates a robust readiness to design auto-scaling container configurations and secure deployment pipelines.",
+        "matchedSkills": [
+          "Python",
+          "Pandas",
+          "Problem Solving"
+        ],
+        "missingSkills": [
+          "GitHub Actions",
+          "Kubernetes Clustering",
+          "Redis Caching",
+          "Nginx Proxies"
+        ],
+        "demandLevel": "Medium"
+      }
+    ],
+    "u_1783148833632": [
+      {
+        "role": "Cloud Analysts",
+        "confidenceScore": 0.95,
+        "matchPercentage": 95,
+        "justification": "Based on your stated target role of Cloud Analysts, your profile shows great alignment. You have foundational elements but will need to bridge a few key skill gaps to master this path.",
+        "matchedSkills": [
+          "SQL",
+          "Numpy",
+          "Pandas"
+        ],
+        "missingSkills": [
+          "Advanced Cloud Analysts Patterns",
+          "Production Deployment",
+          "Performance Optimization"
+        ],
+        "demandLevel": "High"
+      },
+      {
+        "role": "AI Integration Solutions Engineer",
+        "confidenceScore": 0.85,
+        "matchPercentage": 85,
+        "justification": "Your stated interest in continuous learning and analytical thinking matches the urgent global need for developers capable of wiring up LLMs securely.",
+        "matchedSkills": [
+          "System Orchestration",
+          "SQL",
+          "Numpy"
+        ],
+        "missingSkills": [
+          "Gemini API Function Calling",
+          "Prompt Engineering",
+          "Vector Embeddings",
+          "RAG Pipeline Tuning"
+        ],
+        "demandLevel": "High"
+      },
+      {
+        "role": "Cloud Administrator & Operations",
+        "confidenceScore": 0.78,
+        "matchPercentage": 78,
+        "justification": "Your background indicates a robust readiness to design auto-scaling container configurations and secure deployment pipelines.",
+        "matchedSkills": [
+          "SQL",
+          "Numpy",
+          "Problem Solving"
+        ],
+        "missingSkills": [
+          "GitHub Actions",
+          "Kubernetes Clustering",
+          "Redis Caching",
+          "Nginx Proxies"
+        ],
+        "demandLevel": "Medium"
+      }
     ]
   },
-  "roadmaps": {},
+  "roadmaps": {
+    "u_1783146245469": {
+      "userId": "u_1783146245469",
+      "role": "AI Engineer",
+      "progressPct": 17,
+      "startedAt": "2026-07-04T06:26:46.633Z",
+      "skillsAcquired": [],
+      "milestones": [
+        {
+          "week": 1,
+          "focus": "Phase 1: Mastering Advanced AI Engineer Patterns",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Advanced AI Engineer Patterns.",
+          "hoursPerWeek": 10,
+          "completed": false,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Advanced AI Engineer Patterns",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": false
+            },
+            {
+              "title": "Advanced AI Engineer Patterns Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "week": 2,
+          "focus": "Phase 2: Mastering Production Deployment",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Production Deployment.",
+          "hoursPerWeek": 11,
+          "completed": false,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Production Deployment",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": false
+            },
+            {
+              "title": "Production Deployment Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "week": 3,
+          "focus": "Phase 3: Mastering Performance Optimization",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Performance Optimization.",
+          "hoursPerWeek": 12,
+          "completed": false,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Performance Optimization",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": false
+            },
+            {
+              "title": "Performance Optimization Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "week": 4,
+          "focus": "Phase 4: Mastering Advanced AI Engineer Patterns",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Advanced AI Engineer Patterns.",
+          "hoursPerWeek": 10,
+          "completed": false,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Advanced AI Engineer Patterns",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": false
+            },
+            {
+              "title": "Advanced AI Engineer Patterns Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "week": 5,
+          "focus": "Phase 5: Mastering Production Deployment",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Production Deployment.",
+          "hoursPerWeek": 11,
+          "completed": false,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Production Deployment",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": false
+            },
+            {
+              "title": "Production Deployment Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "week": 6,
+          "focus": "Phase 6: Mastering Performance Optimization",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Performance Optimization.",
+          "hoursPerWeek": 12,
+          "completed": true,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Performance Optimization",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": true
+            },
+            {
+              "title": "Performance Optimization Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": true
+            }
+          ]
+        }
+      ]
+    },
+    "u_1783147941544": {
+      "userId": "u_1783147941544",
+      "role": "AI Integration Solutions Engineer",
+      "progressPct": 0,
+      "startedAt": "2026-07-04T07:01:43.467Z",
+      "skillsAcquired": [],
+      "milestones": [
+        {
+          "week": 1,
+          "focus": "Phase 1: Mastering Advanced AI Integration Solutions Engineer Patterns",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Advanced AI Integration Solutions Engineer Patterns.",
+          "hoursPerWeek": 10,
+          "completed": false,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Advanced AI Integration Solutions Engineer Patterns",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": false
+            },
+            {
+              "title": "Advanced AI Integration Solutions Engineer Patterns Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "week": 2,
+          "focus": "Phase 2: Mastering Production Deployment",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Production Deployment.",
+          "hoursPerWeek": 11,
+          "completed": false,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Production Deployment",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": false
+            },
+            {
+              "title": "Production Deployment Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "week": 3,
+          "focus": "Phase 3: Mastering Performance Optimization",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Performance Optimization.",
+          "hoursPerWeek": 12,
+          "completed": false,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Performance Optimization",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": false
+            },
+            {
+              "title": "Performance Optimization Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "week": 4,
+          "focus": "Phase 4: Mastering Advanced AI Integration Solutions Engineer Patterns",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Advanced AI Integration Solutions Engineer Patterns.",
+          "hoursPerWeek": 10,
+          "completed": false,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Advanced AI Integration Solutions Engineer Patterns",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": false
+            },
+            {
+              "title": "Advanced AI Integration Solutions Engineer Patterns Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "week": 5,
+          "focus": "Phase 5: Mastering Production Deployment",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Production Deployment.",
+          "hoursPerWeek": 11,
+          "completed": false,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Production Deployment",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": false
+            },
+            {
+              "title": "Production Deployment Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "week": 6,
+          "focus": "Phase 6: Mastering Performance Optimization",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Performance Optimization.",
+          "hoursPerWeek": 12,
+          "completed": false,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Performance Optimization",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": false
+            },
+            {
+              "title": "Performance Optimization Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": false
+            }
+          ]
+        }
+      ]
+    },
+    "u_1783148833632": {
+      "userId": "u_1783148833632",
+      "role": "Cloud Analysts",
+      "progressPct": 33,
+      "startedAt": "2026-07-04T07:10:08.055Z",
+      "skillsAcquired": [],
+      "milestones": [
+        {
+          "week": 1,
+          "focus": "Phase 1: Mastering Advanced Cloud Analysts Patterns",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Advanced Cloud Analysts Patterns.",
+          "hoursPerWeek": 10,
+          "completed": true,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Advanced Cloud Analysts Patterns",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": true
+            },
+            {
+              "title": "Advanced Cloud Analysts Patterns Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": true
+            }
+          ]
+        },
+        {
+          "week": 2,
+          "focus": "Phase 2: Mastering Production Deployment",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Production Deployment.",
+          "hoursPerWeek": 11,
+          "completed": false,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Production Deployment",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": false
+            },
+            {
+              "title": "Production Deployment Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "week": 3,
+          "focus": "Phase 3: Mastering Performance Optimization",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Performance Optimization.",
+          "hoursPerWeek": 12,
+          "completed": false,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Performance Optimization",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": false
+            },
+            {
+              "title": "Performance Optimization Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "week": 4,
+          "focus": "Phase 4: Mastering Advanced Cloud Analysts Patterns",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Advanced Cloud Analysts Patterns.",
+          "hoursPerWeek": 10,
+          "completed": false,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Advanced Cloud Analysts Patterns",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": false
+            },
+            {
+              "title": "Advanced Cloud Analysts Patterns Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "week": 5,
+          "focus": "Phase 5: Mastering Production Deployment",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Production Deployment.",
+          "hoursPerWeek": 11,
+          "completed": false,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Production Deployment",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": false
+            },
+            {
+              "title": "Production Deployment Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "week": 6,
+          "focus": "Phase 6: Mastering Performance Optimization",
+          "description": "This week you focus on key implementation patterns, setting up project sandboxes, and understanding core architectures for Performance Optimization.",
+          "hoursPerWeek": 12,
+          "completed": true,
+          "resources": [
+            {
+              "title": "Ultimate Guide on Performance Optimization",
+              "platform": "YouTube",
+              "url": "https://www.youtube.com",
+              "type": "video",
+              "completed": true
+            },
+            {
+              "title": "Performance Optimization Specialist Certification",
+              "platform": "Coursera",
+              "url": "https://www.coursera.org",
+              "type": "course",
+              "completed": true
+            }
+          ]
+        }
+      ]
+    }
+  },
   "interviews": {
     "u_1782490019623": {
       "userId": "u_1782490019623",
@@ -2323,9 +3827,175 @@
         }
       ],
       "completed": false
+    },
+    "u_1783146245469": {
+      "userId": "u_1783146245469",
+      "role": "AI Engineer",
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "Technical",
+          "question": "What are the distinct advantages of using an asset bundler like Vite and esbuild over legacy configurations when building single page applications or microservices in React?"
+        },
+        {
+          "id": "q_2",
+          "type": "Technical",
+          "question": "Explain how you would safely handle server-only secrets (for instance, the process.env.GEMINI_API_KEY) in a modern web framework while keeping clients secure."
+        },
+        {
+          "id": "q_3",
+          "type": "Behavioral",
+          "question": "Describe a scenario where you had to quickly learn an unfamiliar technology stack or API specification under tight capstone limitations. How did you structure your schedule?"
+        },
+        {
+          "id": "q_4",
+          "type": "Behavioral",
+          "question": "How do you resolve architectural disagreements or conflicting code recommendations when working in an autonomous agile team?"
+        },
+        {
+          "id": "q_5",
+          "type": "Situational",
+          "question": "A critical system pipeline is failing with an LLM API timeout. Describe the step-by-step diagnostic actions you would spearhead to apply a graceful circuit breaker."
+        }
+      ],
+      "completed": false
+    },
+    "u_1783147941544": {
+      "userId": "u_1783147941544",
+      "role": "AI Integration Solutions Engineer",
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "Technical",
+          "question": "What are the distinct advantages of using an asset bundler like Vite and esbuild over legacy configurations when building single page applications or microservices in React?"
+        },
+        {
+          "id": "q_2",
+          "type": "Technical",
+          "question": "Explain how you would safely handle server-only secrets (for instance, the process.env.GEMINI_API_KEY) in a modern web framework while keeping clients secure."
+        },
+        {
+          "id": "q_3",
+          "type": "Behavioral",
+          "question": "Describe a scenario where you had to quickly learn an unfamiliar technology stack or API specification under tight capstone limitations. How did you structure your schedule?"
+        },
+        {
+          "id": "q_4",
+          "type": "Behavioral",
+          "question": "How do you resolve architectural disagreements or conflicting code recommendations when working in an autonomous agile team?"
+        },
+        {
+          "id": "q_5",
+          "type": "Situational",
+          "question": "A critical system pipeline is failing with an LLM API timeout. Describe the step-by-step diagnostic actions you would spearhead to apply a graceful circuit breaker."
+        }
+      ],
+      "completed": false
+    },
+    "u_1783148833632": {
+      "userId": "u_1783148833632",
+      "role": "Cloud Analysts",
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "Technical",
+          "question": "What are the distinct advantages of using an asset bundler like Vite and esbuild over legacy configurations when building single page applications or microservices in React?"
+        },
+        {
+          "id": "q_2",
+          "type": "Technical",
+          "question": "Explain how you would safely handle server-only secrets (for instance, the process.env.GEMINI_API_KEY) in a modern web framework while keeping clients secure."
+        },
+        {
+          "id": "q_3",
+          "type": "Behavioral",
+          "question": "Describe a scenario where you had to quickly learn an unfamiliar technology stack or API specification under tight capstone limitations. How did you structure your schedule?"
+        },
+        {
+          "id": "q_4",
+          "type": "Behavioral",
+          "question": "How do you resolve architectural disagreements or conflicting code recommendations when working in an autonomous agile team?"
+        },
+        {
+          "id": "q_5",
+          "type": "Situational",
+          "question": "A critical system pipeline is failing with an LLM API timeout. Describe the step-by-step diagnostic actions you would spearhead to apply a graceful circuit breaker."
+        }
+      ],
+      "completed": false
     }
   },
-  "jobInsights": {},
+  "jobInsights": {
+    "ai engineer": {
+      "role": "AI Engineer",
+      "demandRate": "88%",
+      "salaryPercentiles": {
+        "p25": 85000,
+        "p50": 110000,
+        "p75": 145000
+      },
+      "topCompanies": [
+        "Google",
+        "DeepMind",
+        "Stripe",
+        "Netflix",
+        "Amazon"
+      ],
+      "growthTrend": "+18.5% YoY Growth",
+      "hotSkills": [
+        "React 19 Hooks",
+        "Gemini Integrations",
+        "Vite Bundlers",
+        "Microservices Routing"
+      ]
+    },
+    "ai integration solutions engineer": {
+      "role": "AI Integration Solutions Engineer",
+      "demandRate": "88%",
+      "salaryPercentiles": {
+        "p25": 85000,
+        "p50": 110000,
+        "p75": 145000
+      },
+      "topCompanies": [
+        "Google",
+        "DeepMind",
+        "Stripe",
+        "Netflix",
+        "Amazon"
+      ],
+      "growthTrend": "+18.5% YoY Growth",
+      "hotSkills": [
+        "React 19 Hooks",
+        "Gemini Integrations",
+        "Vite Bundlers",
+        "Microservices Routing"
+      ]
+    },
+    "cloud analysts": {
+      "role": "Cloud Analysts",
+      "demandRate": "88%",
+      "salaryPercentiles": {
+        "p25": 85000,
+        "p50": 110000,
+        "p75": 145000
+      },
+      "topCompanies": [
+        "Google",
+        "DeepMind",
+        "Stripe",
+        "Netflix",
+        "Amazon"
+      ],
+      "growthTrend": "+18.5% YoY Growth",
+      "hotSkills": [
+        "React 19 Hooks",
+        "Gemini Integrations",
+        "Vite Bundlers",
+        "Microservices Routing"
+      ]
+    }
+  },
   "systemConfig": {
     "platformName": "CAREER-MATE MACGS",
     "maintenanceMode": false,
